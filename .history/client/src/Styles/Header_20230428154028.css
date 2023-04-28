@@ -1,0 +1,14 @@
+header {
+  background-color: var(--primary);
+  padding: 2rem;
+}
+
+header h1 a {
+  font-size: 3rem;
+  font-weight: 400;
+  display: flex;
+  justify-content: space-between;
+}
+
+header ul {
+}

@@ -1,0 +1,20 @@
+header {
+  background-color: var(--primary);
+  display: flex;
+  justify-content: space-between;
+}
+
+header h1 a {
+  font-size: 3rem;
+  font-weight: 400;
+}
+
+header ul {
+  display: inline-flex;
+}
+
+header ul a {
+  display: inline-block;
+  font-size: 1.8rem;
+  padding: 2rem;
+}

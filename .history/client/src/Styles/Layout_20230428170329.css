@@ -1,0 +1,4 @@
+.whole-wrapper {
+  display: flex;
+  flex-direction: column;
+}

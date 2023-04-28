@@ -1,0 +1,8 @@
+.hero {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.hero-img img {
+  max-width: 50rem;
+}
