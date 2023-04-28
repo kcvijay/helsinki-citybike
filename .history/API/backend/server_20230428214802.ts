@@ -1,5 +1,5 @@
 import express from "express";
-const cors = require("cors");
+import cors from "cors";
 import { PORT } from "./utilities/config";
 import { connectDB } from "./database/db";
 

@@ -1,13 +1,13 @@
 import express from "express";
-const cors = require("cors");
+import cors from "cors";
 import { PORT } from "./utilities/config";
 import { connectDB } from "./database/db";
 
 connectDB();
 
 const app = express();
-app.use(express.json());
 app.use(cors());
+app.use(express.json());
 
 app.use("/api/journeys", require("./routes/actionRoutes"));
 
