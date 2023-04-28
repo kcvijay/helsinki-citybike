@@ -1,0 +1,15 @@
+import React from "react";
+
+const Footer = () => {
+  const date = new Date();
+  const year = date.getFullYear();
+  return (
+    <footer className="bg-slate-700 text-center py-8 text-white">
+      <h2 className="text-xl font-bold">Helsinki City Bike</h2>
+      <p>Source Code &copy;&nbsp;:&nbsp;Vijay KC {year}</p>
+      <div></div>
+    </footer>
+  );
+};
+
+export default Footer;

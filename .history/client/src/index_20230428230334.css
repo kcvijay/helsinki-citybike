@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .active {
+    @apply bg-orange-300;
+  }
+
+  .wrapper {
+    @apply max-w-[1248px] mx-auto p-[48px];
+  }
+}
