@@ -21,7 +21,6 @@ const TableRow = ({
   distance,
   duration,
 }: tableRowProps) => {
-  // Formatting to readable Finnish type date format!
   const convertToLocaleString = (oldDateFormat: any) => {
     const formattedDate = new Date(oldDateFormat).toLocaleString("fi-FI");
     return formattedDate;

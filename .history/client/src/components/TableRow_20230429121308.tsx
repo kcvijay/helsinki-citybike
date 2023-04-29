@@ -21,20 +21,19 @@ const TableRow = ({
   distance,
   duration,
 }: tableRowProps) => {
-  // Formatting to readable Finnish type date format!
-  const convertToLocaleString = (oldDateFormat: any) => {
-    const formattedDate = new Date(oldDateFormat).toLocaleString("fi-FI");
-    return formattedDate;
-  };
+  const formattedDepTime = dep_time;
+  
+  });
 
+  const 
   return (
     <tr>
       <td data-cell="Departure Station">{dep_station}</td>
       <td data-cell="Departure Station ID">{dep_station_id}</td>
-      <td data-cell="Departure Time">{convertToLocaleString(dep_time)}</td>
+      <td data-cell="Departure Time">{formattedDepTime}</td>
       <td data-cell="Return Station">{return_station}</td>
       <td data-cell="Return Station ID">{return_station_id}</td>
-      <td data-cell="Return Time">{convertToLocaleString(return_time)}</td>
+      <td data-cell="Return Time">{return_time.toLocaleString()}</td>
       <td data-cell="Distance">{Number(distance)}</td>
       <td data-cell="Duration">{duration}</td>
     </tr>
