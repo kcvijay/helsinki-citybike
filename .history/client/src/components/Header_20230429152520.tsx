@@ -6,17 +6,15 @@ const Header = () => {
   return (
     <>
       <header className="bg-orange-400 flex justify-between items-center p-6 md:p-0 transition-all duration-300">
-        <Link
-          to="/"
-          className="block text-2xl md:pl-6 font-bold text-white"
-          onClick={() => setShowNav(false)}
-        >
+        <Link to="/" className="block text-2xl md:pl-6 font-bold text-white">
           Helsinki City Bike
         </Link>
         <ul className="hidden md:inline-flex md">
           <li>
             <NavLink
-              className="inline-block w-[160px] md:w-[130] p-8 hover:bg-orange-300 text-center transition-all duration-300"
+              className={`inline-block w-[160px] md:w-[130] p-8 hover:bg-orange-300 text-center transition-all duration-300 ${
+                isActive ? (activeClassName = "active") : ""
+              }`}
               to="/"
             >
               Home

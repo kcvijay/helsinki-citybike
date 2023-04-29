@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import "../styles/Table.css";
-import TableRow from "./JourneyRow";
+import "../styles/AllJourney.css";
+import TableRow from "./TableRow";
 
 const AllJourneys = () => {
   interface journeyData {

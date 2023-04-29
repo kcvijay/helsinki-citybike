@@ -9,7 +9,7 @@ const Header = () => {
         <Link
           to="/"
           className="block text-2xl md:pl-6 font-bold text-white"
-          onClick={() => setShowNav(false)}
+          onClick={setShowNav(false)}
         >
           Helsinki City Bike
         </Link>

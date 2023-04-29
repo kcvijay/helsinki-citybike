@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import "../styles/Table.css";
+import "../styles/AllJourney.css";
 import TableRow from "./JourneyRow";
 
 const AllJourneys = () => {

@@ -6,11 +6,7 @@ const Header = () => {
   return (
     <>
       <header className="bg-orange-400 flex justify-between items-center p-6 md:p-0 transition-all duration-300">
-        <Link
-          to="/"
-          className="block text-2xl md:pl-6 font-bold text-white"
-          onClick={() => setShowNav(false)}
-        >
+        <Link to="/" className="block text-2xl md:pl-6 font-bold text-white">
           Helsinki City Bike
         </Link>
         <ul className="hidden md:inline-flex md">

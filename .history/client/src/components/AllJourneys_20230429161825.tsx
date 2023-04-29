@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import "../styles/Table.css";
-import TableRow from "./JourneyRow";
+import "../styles/AllJourney.css";
+import TableRow from "./TableRow";
 
 const AllJourneys = () => {
   interface journeyData {
@@ -30,8 +30,8 @@ const AllJourneys = () => {
   return (
     <div className="wrapper">
       <h2 className="text-3xl text-white font-bold mb-8">All Journeys</h2>
-      <table className="bg-white border border-white mx-auto w-full transition-all duration-300">
-        <caption className="text-left p-3 bg-white text-slate-500 border border-white">
+      <table className="bg-white mx-auto w-full transition-all duration-300">
+        <caption className="text-left p-3 bg-slate-500 border border-white">
           Helsinki City Bike Customer Journey Data 31.5.2021 -
         </caption>
         <thead className=" border-collapse bg-orange-600 text-white">
