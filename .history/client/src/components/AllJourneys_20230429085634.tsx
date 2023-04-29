@@ -6,7 +6,7 @@ const AllJourneys = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:4000/api/journeys?limit=10")
+      .get("http://localhost:4000/api/journeys/")
       .then((res) => setData(res.data));
   }, []);
 

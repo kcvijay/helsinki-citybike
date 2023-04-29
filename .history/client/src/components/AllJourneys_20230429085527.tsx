@@ -6,11 +6,11 @@ const AllJourneys = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:4000/api/journeys?limit=10")
+      .get("http://localhost:4000/api/journeys")
       .then((res) => setData(res.data));
   }, []);
 
-  console.log(data);
+  console.log(data.slice(1, 100));
   return <div className="wrapper">AllJourneys</div>;
 };
 

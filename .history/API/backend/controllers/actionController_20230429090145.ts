@@ -6,7 +6,7 @@ const Journey = require("../schema/dataSchema");
 
 const getAllData = asyncHandler(async (req: Request, res: Response) => {
   const limit = req.query.limit;
-  const data = await Journey.find().limit(limit);
+  const data = await Journey.find();
   res.status(200).json(data);
 });
 

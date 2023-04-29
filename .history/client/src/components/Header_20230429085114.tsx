@@ -12,7 +12,7 @@ const Header = () => {
         <ul className="hidden md:inline-flex md">
           <li>
             <NavLink
-              className="inline-block w-[160px] md:w-[130] p-8 hover:bg-orange-300 text-center transition-all duration-300"
+              className="inline-block w-[160px]md:w-[130] p-8 hover:bg-orange-300 text-center transition-all duration-300"
               to="/"
             >
               Home

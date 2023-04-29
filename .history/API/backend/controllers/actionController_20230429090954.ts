@@ -5,7 +5,8 @@ const asyncHandler = require("express-async-handler");
 const Journey = require("../schema/dataSchema");
 
 const getAllData = asyncHandler(async (req: Request, res: Response) => {
-  const limit = req.query.limit;
+  const limit =
+    typeof req.query.limit === "string" ? parseInt(req.query.limit) : undefined;
   const data = await Journey.find().limit(limit);
   res.status(200).json(data);
 });
