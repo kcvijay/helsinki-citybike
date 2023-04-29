@@ -22,20 +22,15 @@ const AllJourneys = () => {
       .get("http://localhost:4000/api/journeys?limit=50")
       .then((res) => setData(res.data));
   }, []);
-
-  // Items filtered based on "duration more than 10 seconds and distance more than 10 meters."
-  const filteredData = data.filter(
-    (obj) => obj.duration > 10 && obj.covered_distance > 10
-  );
   return (
     <div className="wrapper">
       <h2 className="text-3xl text-white font-bold mb-8">All Journeys</h2>
-      <div className="bg-white rounded-md">
+      <div className="bg-white px-4 rounded-md">
         <table className="mx-auto w-full transition-all duration-300">
           <thead className="border border-collapse bg-slate-500 text-white ">
             <tr>
-              <th>Depart. Station (ID)</th>
-              <th>Depart. Time</th>
+              <th>Departure Station (ID)</th>
+              <th>Departure Time</th>
               <th>Return Station (ID)</th>
               <th>Return Time</th>
               <th>Distance(km)</th>
@@ -43,7 +38,7 @@ const AllJourneys = () => {
             </tr>
           </thead>
           <tbody>
-            {filteredData.map((el) => {
+            {data.map((el) => {
               return (
                 <TableRow
                   key={el.id}

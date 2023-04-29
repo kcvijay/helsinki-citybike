@@ -1,34 +1,30 @@
 th,
 td {
   text-align: left;
-  min-width: 150px;
-  padding: 7px;
+  width: 100%;
 }
 
-th {
-  font-weight: 400;
-}
-
+th:nth-child(2),
 th:nth-child(5),
-th:nth-child(6),
+th:nth-child(7),
+th:nth-child(8),
+td:nth-child(2),
 td:nth-child(5),
-td:nth-child(6) {
+td:nth-child(7),
+td:nth-child(8) {
   text-align: center;
 }
-tbody tr:not(:last-child) {
+tbody tr {
   border-bottom: 2px solid rgb(204, 205, 206);
 }
 
-@media screen and (max-width: 1160px) {
+@media screen and (max-width: 940px) {
   table {
-    font-size: 80%;
+    font-size: 90%;
   }
 }
 
-@media screen and (max-width: 1013px) {
-  table {
-    font-size: 100%;
-  }
+@media screen and (max-width: 870px) {
   thead {
     display: none;
   }

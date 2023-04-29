@@ -23,9 +23,8 @@ const AllJourneys = () => {
       .then((res) => setData(res.data));
   }, []);
 
-  // Items filtered based on "duration more than 10 seconds and distance more than 10 meters."
   const filteredData = data.filter(
-    (obj) => obj.duration > 10 && obj.covered_distance > 10
+    (el) => el.duration <= 10 && el.covered_distance <= 10
   );
   return (
     <div className="wrapper">

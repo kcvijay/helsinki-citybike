@@ -29,13 +29,12 @@ const TableRow = ({
 
   return (
     <tr>
-      <td data-cell="Depart. Station (ID)">
-        {dep_station} ({dep_station_id})
+      <td data-cell="Departure Station (ID)">
+        {dep_station}({dep_station_id})
       </td>
-      <td data-cell="Depart. Time">{convertToLocaleString(dep_time)}</td>
-      <td data-cell="Return Station (ID)">
-        {return_station} ({return_station_id})
-      </td>
+      <td data-cell="Departure Time">{convertToLocaleString(dep_time)}</td>
+      <td data-cell="Return Station">{return_station}</td>
+      <td data-cell="Return Station ID">{return_station_id}</td>
       <td data-cell="Return Time">{convertToLocaleString(return_time)}</td>
       <td data-cell="Distance">{Number(distance)}</td>
       <td data-cell="Duration">{duration}</td>
