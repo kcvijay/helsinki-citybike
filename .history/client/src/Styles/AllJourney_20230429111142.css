@@ -1,0 +1,42 @@
+th,
+td {
+  padding: 10px 5px;
+}
+
+th:nth-child(2),
+th:nth-child(5),
+th:nth-child(7),
+th:nth-child(8),
+td:nth-child(2),
+td:nth-child(5),
+td:nth-child(7),
+td:nth-child(8) {
+  text-align: center;
+}
+tbody tr {
+  border-bottom: 2px solid rgb(204, 205, 206);
+}
+
+@media screen and (max-width: 860px) {
+  table {
+    font-size: 13px;
+  }
+  thead {
+    display: none;
+  }
+
+  tbody tr td {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: left;
+    column-gap: 10px;
+    padding: 1rem;
+    text-align: left;
+  }
+
+  tbody td::before {
+    content: attr(data-cell);
+    font-weight: 700;
+    text-align: left;
+  }
+}

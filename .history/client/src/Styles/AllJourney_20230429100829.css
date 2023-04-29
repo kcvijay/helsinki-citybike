@@ -1,0 +1,10 @@
+@media screen and (max-width: 860px) {
+  thead {
+    display: none;
+  }
+
+  tbody {
+    display: flex;
+    flex-direction: column;
+  }
+}

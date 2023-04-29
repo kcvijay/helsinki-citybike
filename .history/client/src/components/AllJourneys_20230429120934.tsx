@@ -50,9 +50,7 @@ const AllJourneys = () => {
                   return_station={el.return_station_name}
                   return_station_id={el.return_station_id}
                   return_time={el.return}
-                  distance={
-                    Math.round((el.covered_distance / 1000) * 100) / 100
-                  }
+                  distance={Math.round(el.covered_distance / 1000)}
                   duration={Math.floor(el.duration / 60)}
                 />
               );

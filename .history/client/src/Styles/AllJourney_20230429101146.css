@@ -1,0 +1,14 @@
+@media screen and (max-width: 860px) {
+  thead {
+    display: none;
+  }
+
+  tbody tr {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  tbody tr::before {
+    content: attr(data-cell);
+  }
+}

@@ -1,0 +1,19 @@
+@media screen and (max-width: 860px) {
+  thead {
+    display: none;
+  }
+
+  tbody tr {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  tbody tr td {
+    padding: 0;
+    text-align: left;
+  }
+
+  tbody td::before {
+    content: attr(data-cell);
+  }
+}

@@ -1,0 +1,85 @@
+import React from "react";
+import axios from "axios";
+import "../styles/AllJourney.css";
+
+const AllJourneys = () => {
+  return (
+    <div className="wrapper">
+      <h2 className="text-3xl text-white font-bold mb-8">All Journeys</h2>
+      <div className="bg-white p-2 rounded-md">
+        <table className="mx-auto w-full transition-all duration-300">
+          <thead className="border border-collapse bg-slate-500 text-white ">
+            <tr>
+              <th className="p-3 text-left font-normal">Departure Station</th>
+              <th className="p-3 text-center font-normal">
+                Departure Station ID
+              </th>
+              <th className="p-3 text-left font-normal">Departure Time</th>
+              <th className="p-3 text-left font-normal">Return Station</th>
+              <th className="p-3 text-center font-normal">Return Station ID</th>
+              <th className="p-3 text-left font-normal">Return Time</th>
+              <th className="p-3 text-center font-normal">Distance</th>
+              <th className="p-3 text-center font-normal">Duration</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr className="border-b-2 border-slate-300">
+              <td className="p-3 text-left" data-cell="Departure Station">
+                Töölönlahti
+              </td>
+              <td className="p-3 text-center" data-cell="Departure Station ID">
+                100
+              </td>
+              <td className="p-3 text-left" data-cell="Departure Time">
+                01.05.2021 12:25
+              </td>
+              <td className="p-3 text-left" data-cell="Return Station">
+                Meilahti
+              </td>
+              <td className="p-3 text-center" data-cell="Return Station ID">
+                120
+              </td>
+              <td className="p-3 text-left" data-cell="Return Time">
+                01.05.2021 12:35
+              </td>
+              <td className="p-3 text-center" data-cell="Distance">
+                200 m
+              </td>
+              <td className="p-3 text-center" data-cell="Duration">
+                10 min
+              </td>
+            </tr>
+            <tr className="border-b-2 border-slate-300">
+              <td className="p-3 text-left" data-cell="Departure Station">
+                Töölönlahti
+              </td>
+              <td className="p-3 text-center" data-cell="Departure Station ID">
+                100
+              </td>
+              <td className="p-3 text-left" data-cell="Departure Time">
+                01.05.2021 12:25
+              </td>
+              <td className="p-3 text-left" data-cell="Return Station">
+                Meilahti
+              </td>
+              <td className="p-3 text-center" data-cell="Return Station ID">
+                120
+              </td>
+              <td className="p-3 text-left" data-cell="Return Time">
+                01.05.2021 12:35
+              </td>
+              <td className="p-3 text-center" data-cell="Distance">
+                200 m
+              </td>
+              <td className="p-3 text-center" data-cell="Duration">
+                10 min
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+};
+
+export default AllJourneys;

@@ -1,0 +1,23 @@
+@media screen and (max-width: 860px) {
+  table {
+    font-size: 80%;
+  }
+  thead {
+    display: none;
+  }
+
+  tbody tr td {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: left;
+    column-gap: 2px;
+    padding: 0;
+    text-align: left;
+  }
+
+  tbody td::before {
+    content: attr(data-cell);
+    font-weight: 700;
+    text-align: left;
+  }
+}

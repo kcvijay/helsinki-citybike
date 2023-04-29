@@ -9,7 +9,6 @@ const AllJourneys = () => {
     departure_station_name: string;
     departure_station_id: string;
     departure: Date;
-    return_station_name: string;
     return_station_id: string;
     return: Date;
     covered_distance: number;
@@ -35,7 +34,7 @@ const AllJourneys = () => {
               <th>Return Station</th>
               <th>Return Station ID</th>
               <th>Return Time</th>
-              <th>Distance(km)</th>
+              <th>Distance(m)</th>
               <th>Duration(m)</th>
             </tr>
           </thead>
@@ -47,12 +46,10 @@ const AllJourneys = () => {
                   dep_station={el.departure_station_name}
                   dep_station_id={el.departure_station_id}
                   dep_time={el.departure}
-                  return_station={el.return_station_name}
+                  return_station={el.return_station_id}
                   return_station_id={el.return_station_id}
                   return_time={el.return}
-                  distance={
-                    Math.round((el.covered_distance / 1000) * 100) / 100
-                  }
+                  distance={el.covered_distance / 1000}
                   duration={Math.floor(el.duration / 60)}
                 />
               );
