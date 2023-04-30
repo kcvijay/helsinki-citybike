@@ -75,9 +75,7 @@ const SingleStation = () => {
 
           <div className="mb-6">
             <h3 className="text-xl">Operator</h3>
-            <p className="text-lg text-slate-500">
-              {data?.operator === " " ? "CityBike Finland" : data?.operator}
-            </p>
+            <p className="text-lg text-slate-500">{data?.operator}</p>
           </div>
 
           <div className="mb-6">

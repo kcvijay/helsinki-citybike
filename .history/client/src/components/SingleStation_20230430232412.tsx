@@ -23,9 +23,12 @@ const SingleStation = () => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    setLoading(true);
-    window.scrollTo(0, window.screenTop);
+    const scrollPosition = window.pageYOffset;
+    window.scrollTo(0, scrollPosition);
+  }, []);
 
+  useEffect(() => {
+    setLoading(true);
     axios.get(`http://localhost:4000/api/stations/${params.id}`).then((res) => {
       console.log(res.data);
       setData(res.data);
@@ -52,45 +55,40 @@ const SingleStation = () => {
       <h2 className="text-3xl text-white font-bold uppercase">
         {data?.name}
         <span className="inline-block bg-orange-500 ml-4 px-4 py-1 rounded-md">
-          id {data?.station_id}
+          ID {data?.station_id}
         </span>
       </h2>
-      <p className="text-xl text-white my-2 mb-12">{data?.Namn}</p>
+      <p className="text-2xl text-white my-2 mb-12">{data?.Namn}</p>
 
-      <div className="bg-white p-5 rounded-md shadow-sm shadow-slate-100 grid grid-cols-1 md:grid-cols-2 gap-4 transition-all dura">
+      <div className="bg-white p-6 rounded-md shadow-sm shadow-slate-100 grid grid-cols-1 md:grid-cols-2 gap-4 transition-all dura">
         <div>
           <div className="mb-6">
-            <h3 className="text-xl">Address</h3>
-            <p className="text-lg text-slate-500">
+            <h3 className="text-2xl">Address</h3>
+            <p className="text-xl text-slate-500">
               {data?.address} / {data?.Adress}
             </p>
           </div>
           <div className="mb-6">
-            <h3 className="text-xl">City</h3>
-            <p className="text-lg text-slate-500">
-              {data?.city === " " ? "Helsinki" : data?.city} /{" "}
-              {data?.Stad === " " ? "Helsingfors" : data?.Stad}
+            <h3 className="text-2xl">City</h3>
+            <p className="text-xl text-slate-500">
+              {data?.city} / {data?.Stad}
             </p>
           </div>
 
           <div className="mb-6">
-            <h3 className="text-xl">Operator</h3>
-            <p className="text-lg text-slate-500">
-              {data?.operator === " " ? "CityBike Finland" : data?.operator}
-            </p>
+            <h3 className="text-2xl">Operator</h3>
+            <p className="text-xl text-slate-500">{data?.operator}</p>
           </div>
 
           <div className="mb-6">
-            <h3 className="text-xl">Capacity</h3>
-            <p className="text-lg text-slate-500">{data?.capacity} bikes</p>
+            <h3 className="text-2xl">Capacity</h3>
+            <p className="text-xl text-slate-500">{data?.capacity} bikes</p>
           </div>
 
           <div className="mb-6">
-            <h3 className="text-xl">Coordinates</h3>
-            <p className="text-lg text-slate-500">
-              X: {data?.x}, Y: {data?.y}
-            </p>
-            <p className="text-lg text-slate-500"></p>
+            <h3 className="text-2xl">Location</h3>
+            <p className="text-xl text-slate-500">X: {data?.x}</p>
+            <p className="text-xl text-slate-500">Y: {data?.y}</p>
           </div>
         </div>
         <div className="h-[300px] md:h-auto relative">

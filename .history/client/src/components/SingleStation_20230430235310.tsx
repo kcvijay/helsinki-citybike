@@ -24,8 +24,6 @@ const SingleStation = () => {
 
   useEffect(() => {
     setLoading(true);
-    window.scrollTo(0, window.screenTop);
-
     axios.get(`http://localhost:4000/api/stations/${params.id}`).then((res) => {
       console.log(res.data);
       setData(res.data);
@@ -68,16 +66,13 @@ const SingleStation = () => {
           <div className="mb-6">
             <h3 className="text-xl">City</h3>
             <p className="text-lg text-slate-500">
-              {data?.city === " " ? "Helsinki" : data?.city} /{" "}
-              {data?.Stad === " " ? "Helsingfors" : data?.Stad}
+              {data?.city} / {data?.Stad}
             </p>
           </div>
 
           <div className="mb-6">
             <h3 className="text-xl">Operator</h3>
-            <p className="text-lg text-slate-500">
-              {data?.operator === " " ? "CityBike Finland" : data?.operator}
-            </p>
+            <p className="text-lg text-slate-500">{data?.operator}</p>
           </div>
 
           <div className="mb-6">
