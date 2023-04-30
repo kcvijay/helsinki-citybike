@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
+import {Journey, Station} = require("../schema/mongooseSchema")
 import mongoose from "mongoose";
 
 const asyncHandler = require("express-async-handler");
-const Journey = require("../schema/dataSchema");
 
 const getAllData = asyncHandler(async (req: Request, res: Response) => {
   const limit = req.query.limit;
