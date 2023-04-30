@@ -1,6 +1,5 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import "../styles/Table.css";
 import loader from "../assets/loading.gif";
 import StationRow from "./StationRow";
@@ -18,7 +17,6 @@ const AllStations = () => {
   }
   const [data, setData] = useState<stationData[]>([]);
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
 
   useEffect(() => {
     setLoading(true);
@@ -52,7 +50,7 @@ const AllStations = () => {
             ></input>
             <button
               type="submit"
-              className="material-icons absolute top-3 right-6 scale-125"
+              className="material-icons absolute top-3 right-6"
             >
               search
             </button>

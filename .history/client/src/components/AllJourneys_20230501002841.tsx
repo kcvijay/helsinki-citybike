@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../styles/Table.css";
 import loader from "../assets/loading.gif";
@@ -19,7 +18,6 @@ const AllJourneys = () => {
   }
   const [data, setData] = useState<journeyData[]>([]);
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
 
   useEffect(() => {
     setLoading(true);
@@ -64,7 +62,7 @@ const AllJourneys = () => {
             ></input>
             <button
               type="submit"
-              className="material-icons absolute top-3 right-6 scale-125"
+              className="material-icons absolute top-3 right-6"
             >
               search
             </button>

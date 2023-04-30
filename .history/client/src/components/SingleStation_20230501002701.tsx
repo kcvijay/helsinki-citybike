@@ -113,7 +113,7 @@ const SingleStation = () => {
         className="inline-block btn-primary mt-6"
         onClick={() => navigate(-1)}
       >
-        &larr; Go Back
+        Go Back
       </button>
     </div>
   );

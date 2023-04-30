@@ -64,7 +64,7 @@ const AllJourneys = () => {
             ></input>
             <button
               type="submit"
-              className="material-icons absolute top-3 right-6 scale-125"
+              className="material-icons absolute top-3 right-6 w-6"
             >
               search
             </button>

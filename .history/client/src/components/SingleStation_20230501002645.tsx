@@ -109,11 +109,8 @@ const SingleStation = () => {
           </Link>
         </div>
       </div>
-      <button
-        className="inline-block btn-primary mt-6"
-        onClick={() => navigate(-1)}
-      >
-        &larr; Go Back
+      <button className="btn-primary" onClick={() => navigate(-1)}>
+        Go Back
       </button>
     </div>
   );

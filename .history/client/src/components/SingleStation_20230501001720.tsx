@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import loader from "../assets/loading.gif";
 
 const SingleStation = () => {
@@ -19,7 +19,6 @@ const SingleStation = () => {
     y: string;
   }
   const params = useParams();
-  const navigate = useNavigate();
   const [data, setData] = useState<singleStationData>();
   const [loading, setLoading] = useState(false);
 
@@ -50,48 +49,48 @@ const SingleStation = () => {
 
   return (
     <div className="wrapper">
-      <h2 className="text-xl md:text-3xl text-white font-bold uppercase">
+      <h2 className="text-xl mb:text-3xl text-white font-bold uppercase">
         {data?.name}
         <span className="inline-block bg-orange-500 ml-4 px-4 py-1 rounded-md">
           id {data?.station_id}
         </span>
       </h2>
-      <p className="text-md md:text-xl text-white my-2 mb-12">{data?.Namn}</p>
+      <p className="text-lg md:text-xl text-white my-2 mb-12">{data?.Namn}</p>
 
       <div className="bg-white p-5 rounded-md shadow-sm shadow-slate-100 grid grid-cols-1 md:grid-cols-2 gap-4 transition-all duration-300">
         <div>
           <div className="mb-6">
-            <h3 className="text-md md:text-xl">Address</h3>
-            <p className="text-md text-slate-500">
+            <h3 className="text-lg md:text-xl">Address</h3>
+            <p className="text-lg text-slate-500">
               {data?.address} / {data?.Adress}
             </p>
           </div>
           <div className="mb-6">
-            <h3 className="text-md md:text-xl">City</h3>
-            <p className="text-md text-slate-500">
+            <h3 className="text-lg md:text-xl">City</h3>
+            <p className="text-lg text-slate-500">
               {data?.city === " " ? "Helsinki" : data?.city} /{" "}
               {data?.Stad === " " ? "Helsingfors" : data?.Stad}
             </p>
           </div>
 
           <div className="mb-6">
-            <h3 className="text-md md:text-xl">Operator</h3>
-            <p className="text-md text-slate-500">
+            <h3 className="text-lg md:text-xl">Operator</h3>
+            <p className="text-lg text-slate-500">
               {data?.operator === " " ? "CityBike Finland" : data?.operator}
             </p>
           </div>
 
           <div className="mb-6">
-            <h3 className="text-md md:text-xl">Capacity</h3>
-            <p className="text-md text-slate-500">{data?.capacity} bikes</p>
+            <h3 className="text-lg md:text-xl">Capacity</h3>
+            <p className="text-lg text-slate-500">{data?.capacity} bikes</p>
           </div>
 
           <div className="mb-6">
-            <h3 className="text-md md:text-xl">Coordinates</h3>
-            <p className="text-md text-slate-500">
+            <h3 className="text-lg md:text-xl">Coordinates</h3>
+            <p className="text-lg text-slate-500">
               X: {data?.x}, Y: {data?.y}
             </p>
-            <p className="text-md text-slate-500"></p>
+            <p className="text-lg text-slate-500"></p>
           </div>
         </div>
         <div className="h-[300px] md:h-auto relative transition-all duration-300">
@@ -109,12 +108,6 @@ const SingleStation = () => {
           </Link>
         </div>
       </div>
-      <button
-        className="inline-block btn-primary mt-6"
-        onClick={() => navigate(-1)}
-      >
-        &larr; Go Back
-      </button>
     </div>
   );
 };

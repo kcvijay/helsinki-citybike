@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import loader from "../assets/loading.gif";
 
 const SingleStation = () => {
@@ -19,7 +19,6 @@ const SingleStation = () => {
     y: string;
   }
   const params = useParams();
-  const navigate = useNavigate();
   const [data, setData] = useState<singleStationData>();
   const [loading, setLoading] = useState(false);
 
@@ -50,7 +49,7 @@ const SingleStation = () => {
 
   return (
     <div className="wrapper">
-      <h2 className="text-xl md:text-3xl text-white font-bold uppercase">
+      <h2 className="text-xl mb:text-3xl text-white font-bold uppercase">
         {data?.name}
         <span className="inline-block bg-orange-500 ml-4 px-4 py-1 rounded-md">
           id {data?.station_id}
@@ -109,12 +108,6 @@ const SingleStation = () => {
           </Link>
         </div>
       </div>
-      <button
-        className="inline-block btn-primary mt-6"
-        onClick={() => navigate(-1)}
-      >
-        &larr; Go Back
-      </button>
     </div>
   );
 };
