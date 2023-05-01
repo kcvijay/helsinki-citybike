@@ -25,11 +25,12 @@ const AllJourneys = () => {
   const [data, setData] = useState<journeyData[]>([]);
   const [loading, setLoading] = useState(false);
   const [search, setSearch] = useState("");
+  const [chosenPageLimit, setChosenPageLimit] = useState(Number(""));
   const [firstIndex, setFirstIndex] = useState(0);
   const [itemsPerPage, setItemsPerPage] = useState(25);
   const navigate = useNavigate();
 
-  // On Page load...Fetch 1000 items
+  // On Page load...
   useEffect(() => {
     handleFetchData(1000, 0);
   }, []);

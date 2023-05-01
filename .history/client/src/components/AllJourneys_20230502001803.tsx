@@ -29,14 +29,14 @@ const AllJourneys = () => {
   const [itemsPerPage, setItemsPerPage] = useState(25);
   const navigate = useNavigate();
 
-  // On Page load...Fetch 1000 items
+  // On Page load...
   useEffect(() => {
     handleFetchData(1000, 0);
   }, []);
 
   //On change event
   useEffect(() => {
-    if (itemsPerPage < 0) {
+    if (itemsPerPage > 0) {
       handleFetchData(itemsPerPage, 0);
       toast.success(`Showing ${data.length} items.`);
     }
@@ -81,11 +81,8 @@ const AllJourneys = () => {
   const pageCount = Math.ceil(data.length / itemsPerPage);
 
   const handlePageClick = (e: any) => {
-    const newOffset = e.selected + 1 * itemsPerPage;
-    const maxOffset = data.length - itemsPerPage;
-    const clampedOffset = Math.min(newOffset, maxOffset);
-    setFirstIndex(clampedOffset);
-    console.log(e);
+    const newOffset = (e.selected * itemsPerPage) % data.length;
+    setFirstIndex(newOffset);
   };
 
   if (loading) {

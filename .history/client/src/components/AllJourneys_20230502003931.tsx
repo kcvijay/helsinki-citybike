@@ -25,22 +25,23 @@ const AllJourneys = () => {
   const [data, setData] = useState<journeyData[]>([]);
   const [loading, setLoading] = useState(false);
   const [search, setSearch] = useState("");
-  const [firstIndex, setFirstIndex] = useState(0);
+  const [chosenPageLimit, setChosenPageLimit] = useState(Number(""));
+  const [firstIndex, setFirstIndex] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(25);
   const navigate = useNavigate();
 
-  // On Page load...Fetch 1000 items
+  // On Page load...
   useEffect(() => {
     handleFetchData(1000, 0);
   }, []);
 
   //On change event
   useEffect(() => {
-    if (itemsPerPage < 0) {
-      handleFetchData(itemsPerPage, 0);
+    if (chosenPageLimit > 0) {
+      handleFetchData(chosenPageLimit, 0);
       toast.success(`Showing ${data.length} items.`);
     }
-  }, [itemsPerPage, data.length]);
+  }, [chosenPageLimit, data.length]);
 
   const changeHandler = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
