@@ -29,22 +29,19 @@ const AllJourneys = () => {
   const [itemsPerPage, setItemsPerPage] = useState(25);
   const navigate = useNavigate();
 
-  // On Page load...Fetch 1000 items.//
+  // On Page load...Fetch 1000 items
   useEffect(() => {
     handleFetchData(1000, 0);
   }, []);
-  ////
 
-  // RE-fetch the data on select change.//
+  //On change event
   useEffect(() => {
     if (itemsPerPage < 0) {
       handleFetchData(itemsPerPage, 0);
       toast.success(`Showing ${data.length} items.`);
     }
   }, [itemsPerPage, data.length]);
-  ////
 
-  // On input change.//
   const changeHandler = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
@@ -54,9 +51,8 @@ const AllJourneys = () => {
       setItemsPerPage(+e.target.value);
     }
   };
-  ////
 
-  // Function for fetching data.//
+  // Function for fetching data.
   const handleFetchData = async (fetchedItems?: number, offset?: number) => {
     setLoading(true);
     const limit = fetchedItems === undefined ? "" : fetchedItems;
@@ -68,18 +64,17 @@ const AllJourneys = () => {
         setLoading(false);
       });
   };
-  ////
 
-  //Items filtered based on "duration more than 10 seconds, distance more than 10 meters and search value."//
+  //Items filtered based on "duration more than 10 seconds, distance more than 10 meters and search value."
   const filteredData = data.filter(
     (obj) =>
       obj.duration > 10 &&
       obj.covered_distance > 10 &&
       obj.departure_station_name.toLowerCase().includes(search.toLowerCase())
   );
-  ////
+  /////\\\\\
 
-  // For Pagination //
+  // For Pagination
   const endIndex = firstIndex + itemsPerPage;
   const currentItems = filteredData.slice(firstIndex, endIndex);
   const pageCount = Math.ceil(data.length / itemsPerPage);
@@ -91,7 +86,7 @@ const AllJourneys = () => {
     setFirstIndex(clampedOffset);
     console.log(e);
   };
-  ////
+  /////\\\\\
 
   if (loading) {
     return (
