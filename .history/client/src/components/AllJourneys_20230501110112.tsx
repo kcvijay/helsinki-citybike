@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import ReactPaginate from "react-paginate";
+import "../styles/Table.css";
 import loader from "../assets/loading.gif";
 import JourneyRow from "./JourneyRow";
-import "../styles/Table.css";
 
 const AllJourneys = () => {
   interface journeyData {
@@ -20,16 +19,13 @@ const AllJourneys = () => {
   }
   const [data, setData] = useState<journeyData[]>([]);
   const [loading, setLoading] = useState(false);
-  const [inputValue, setInputValue] = useState({
-    search: "",
-    itemsPerPage: "",
-  });
+  const [searchValue, setSearchValue] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`http://localhost:4000/api/journeys?limit=`)
+      .get("http://localhost:4000/api/journeys?limit=")
       .then((res) => {
         setData(res.data);
         setLoading(false);
@@ -39,30 +35,8 @@ const AllJourneys = () => {
       });
   }, []);
 
-  const changeHandler = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  ) => {
-    if (e.target instanceof HTMLInputElement) {
-      setInputValue({ ...inputValue, search: e.target.value });
-    } else if (e.target instanceof HTMLSelectElement) {
-      const itemsPerPage = e.target.value;
-      setInputValue({ ...inputValue, itemsPerPage });
-      itemsPerPageHandler(itemsPerPage);
-    }
-  };
-  const itemsPerPageHandler = (items: string) => {
-    setLoading(true);
-    axios
-      .get(`http://localhost:4000/api/journeys?limit=${items}`)
-      .then((res) => {
-        console.log(inputValue);
-        setData(res.data);
-        console.log(res.data);
-        setLoading(false);
-      })
-      .catch((error) => {
-        alert("An Error occurred. " + error.message);
-      });
+  const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchValue(e.target.value);
   };
 
   //Items filtered based on "duration more than 10 seconds, distance more than 10 meters and search value."
@@ -70,9 +44,12 @@ const AllJourneys = () => {
     (obj) =>
       obj.duration > 10 &&
       obj.covered_distance > 10 &&
+      obj.return_station_name
+        .toLowerCase()
+        .includes(searchValue.toLowerCase()) &&
       obj.departure_station_name
         .toLowerCase()
-        .includes(inputValue.search.toLowerCase())
+        .includes(searchValue.toLowerCase())
   );
 
   if (loading) {
@@ -85,27 +62,7 @@ const AllJourneys = () => {
 
   return (
     <div className="wrapper">
-      <div className="flex justify-between items-center  mb-8">
-        <h2 className="text-3xl text-white font-bold">All Journeys</h2>
-        <form>
-          <select
-            defaultValue={"default"}
-            className="p-3 rounded-md"
-            id="itemsPerPage"
-            name="itemsPerPage"
-            onChange={changeHandler}
-          >
-            <option value="default" disabled>
-              Items per page
-            </option>
-            <option value="25">25</option>
-            <option value="50">50</option>
-            <option value="75">75</option>
-            <option value="100">100</option>
-          </select>
-        </form>
-      </div>
-
+      <h2 className="text-3xl text-white font-bold mb-8">All Journeys</h2>
       <table className="bg-white border border-white mx-auto w-full transition-all duration-300">
         <caption className="relative text-left bg-white text-slate-500 border border-white">
           <form>

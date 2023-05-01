@@ -39,30 +39,29 @@ const AllJourneys = () => {
       });
   }, []);
 
+  const itemsPerPageLoadingHandler = async (items: string) => {
+    setLoading(true);
+    await axios
+      .get(`http://localhost:4000/api/journeys?limit=${items}`)
+      .then((res) => {
+        console.log(items);
+        setData(res.data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        alert("An Error occurred. " + error.message);
+      });
+  };
+
   const changeHandler = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
     if (e.target instanceof HTMLInputElement) {
       setInputValue({ ...inputValue, search: e.target.value });
     } else if (e.target instanceof HTMLSelectElement) {
-      const itemsPerPage = e.target.value;
-      setInputValue({ ...inputValue, itemsPerPage });
-      itemsPerPageHandler(itemsPerPage);
+      setInputValue({ ...inputValue, itemsPerPage: e.target.value });
+      itemsPerPageLoadingHandler(inputValue.itemsPerPage);
     }
-  };
-  const itemsPerPageHandler = (items: string) => {
-    setLoading(true);
-    axios
-      .get(`http://localhost:4000/api/journeys?limit=${items}`)
-      .then((res) => {
-        console.log(inputValue);
-        setData(res.data);
-        console.log(res.data);
-        setLoading(false);
-      })
-      .catch((error) => {
-        alert("An Error occurred. " + error.message);
-      });
   };
 
   //Items filtered based on "duration more than 10 seconds, distance more than 10 meters and search value."
@@ -85,8 +84,8 @@ const AllJourneys = () => {
 
   return (
     <div className="wrapper">
-      <div className="flex justify-between items-center  mb-8">
-        <h2 className="text-3xl text-white font-bold">All Journeys</h2>
+      <div className="flex justify-between">
+        <h2 className="text-3xl text-white font-bold mb-8">All Journeys</h2>
         <form>
           <select
             defaultValue={"default"}

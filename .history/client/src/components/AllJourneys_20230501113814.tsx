@@ -47,17 +47,16 @@ const AllJourneys = () => {
     } else if (e.target instanceof HTMLSelectElement) {
       const itemsPerPage = e.target.value;
       setInputValue({ ...inputValue, itemsPerPage });
-      itemsPerPageHandler(itemsPerPage);
+      itemsPerPageLoadingHandler(itemsPerPage);
     }
   };
-  const itemsPerPageHandler = (items: string) => {
+  const itemsPerPageLoadingHandler = async (items: string) => {
     setLoading(true);
     axios
       .get(`http://localhost:4000/api/journeys?limit=${items}`)
       .then((res) => {
-        console.log(inputValue);
+        console.log(items);
         setData(res.data);
-        console.log(res.data);
         setLoading(false);
       })
       .catch((error) => {
@@ -85,8 +84,8 @@ const AllJourneys = () => {
 
   return (
     <div className="wrapper">
-      <div className="flex justify-between items-center  mb-8">
-        <h2 className="text-3xl text-white font-bold">All Journeys</h2>
+      <div className="flex justify-between">
+        <h2 className="text-3xl text-white font-bold mb-8">All Journeys</h2>
         <form>
           <select
             defaultValue={"default"}

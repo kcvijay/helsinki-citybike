@@ -29,7 +29,9 @@ const AllJourneys = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`http://localhost:4000/api/journeys?limit=`)
+      .get(
+        `http://localhost:4000/api/journeys?limit=${inputValue.itemsPerPage}`
+      )
       .then((res) => {
         setData(res.data);
         setLoading(false);
@@ -39,30 +41,8 @@ const AllJourneys = () => {
       });
   }, []);
 
-  const changeHandler = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  ) => {
-    if (e.target instanceof HTMLInputElement) {
-      setInputValue({ ...inputValue, search: e.target.value });
-    } else if (e.target instanceof HTMLSelectElement) {
-      const itemsPerPage = e.target.value;
-      setInputValue({ ...inputValue, itemsPerPage });
-      itemsPerPageHandler(itemsPerPage);
-    }
-  };
-  const itemsPerPageHandler = (items: string) => {
-    setLoading(true);
-    axios
-      .get(`http://localhost:4000/api/journeys?limit=${items}`)
-      .then((res) => {
-        console.log(inputValue);
-        setData(res.data);
-        console.log(res.data);
-        setLoading(false);
-      })
-      .catch((error) => {
-        alert("An Error occurred. " + error.message);
-      });
+  const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInputValue({ ...inputValue, [e.target.name]: e.target.value });
   };
 
   //Items filtered based on "duration more than 10 seconds, distance more than 10 meters and search value."
@@ -85,8 +65,8 @@ const AllJourneys = () => {
 
   return (
     <div className="wrapper">
-      <div className="flex justify-between items-center  mb-8">
-        <h2 className="text-3xl text-white font-bold">All Journeys</h2>
+      <div className="flex justify-between">
+        <h2 className="text-3xl text-white font-bold mb-8">All Journeys</h2>
         <form>
           <select
             defaultValue={"default"}
@@ -99,9 +79,9 @@ const AllJourneys = () => {
               Items per page
             </option>
             <option value="25">25</option>
-            <option value="50">50</option>
-            <option value="75">75</option>
-            <option value="100">100</option>
+            <option value="25">50</option>
+            <option value="25">75</option>
+            <option value="25">100</option>
           </select>
         </form>
       </div>

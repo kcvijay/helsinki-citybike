@@ -57,7 +57,6 @@ const AllJourneys = () => {
       .then((res) => {
         console.log(inputValue);
         setData(res.data);
-        console.log(res.data);
         setLoading(false);
       })
       .catch((error) => {

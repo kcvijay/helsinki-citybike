@@ -45,19 +45,17 @@ const AllJourneys = () => {
     if (e.target instanceof HTMLInputElement) {
       setInputValue({ ...inputValue, search: e.target.value });
     } else if (e.target instanceof HTMLSelectElement) {
-      const itemsPerPage = e.target.value;
-      setInputValue({ ...inputValue, itemsPerPage });
-      itemsPerPageHandler(itemsPerPage);
+      setInputValue({ ...inputValue, itemsPerPage: e.target.value });
     }
   };
-  const itemsPerPageHandler = (items: string) => {
+  const itemsPerPageLoadingHandler = () => {
     setLoading(true);
     axios
-      .get(`http://localhost:4000/api/journeys?limit=${items}`)
+      .get(
+        `http://localhost:4000/api/journeys?limit=${inputValue.itemsPerPage}`
+      )
       .then((res) => {
-        console.log(inputValue);
         setData(res.data);
-        console.log(res.data);
         setLoading(false);
       })
       .catch((error) => {
@@ -85,8 +83,8 @@ const AllJourneys = () => {
 
   return (
     <div className="wrapper">
-      <div className="flex justify-between items-center  mb-8">
-        <h2 className="text-3xl text-white font-bold">All Journeys</h2>
+      <div className="flex justify-between">
+        <h2 className="text-3xl text-white font-bold mb-8">All Journeys</h2>
         <form>
           <select
             defaultValue={"default"}
@@ -99,9 +97,9 @@ const AllJourneys = () => {
               Items per page
             </option>
             <option value="25">25</option>
-            <option value="50">50</option>
-            <option value="75">75</option>
-            <option value="100">100</option>
+            <option value="25">50</option>
+            <option value="25">75</option>
+            <option value="25">100</option>
           </select>
         </form>
       </div>

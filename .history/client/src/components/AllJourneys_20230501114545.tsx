@@ -53,11 +53,10 @@ const AllJourneys = () => {
   const itemsPerPageHandler = (items: string) => {
     setLoading(true);
     axios
-      .get(`http://localhost:4000/api/journeys?limit=${items}`)
+      .get(`http://localhost:4000/api/joureys?limit=${items}`)
       .then((res) => {
         console.log(inputValue);
         setData(res.data);
-        console.log(res.data);
         setLoading(false);
       })
       .catch((error) => {
