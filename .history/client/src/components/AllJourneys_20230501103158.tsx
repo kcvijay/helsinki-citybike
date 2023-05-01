@@ -49,6 +49,14 @@ const AllJourneys = () => {
         .includes(searchValue.toLowerCase())
   );
 
+  // const searchedData: any = () => {
+  //   filteredData.filter((item) =>
+  //     item.departure_station_name
+  //       .toLowerCase()
+  //       .includes(searchValue.toLowerCase())
+  //   );
+  // };
+
   if (loading) {
     return (
       <div className="flex py-[50px] justify-center items-center">
@@ -69,7 +77,7 @@ const AllJourneys = () => {
               pattern="[a-z][0-9]"
               id="search"
               name="search"
-              placeholder="Search by departure station.."
+              placeholder="Search by station"
               spellCheck={"false"}
               onChange={changeHandler}
             ></input>

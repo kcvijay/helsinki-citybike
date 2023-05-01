@@ -18,7 +18,6 @@ const AllStations = () => {
   }
   const [data, setData] = useState<stationData[]>([]);
   const [loading, setLoading] = useState(false);
-  const [searchValue, setSearchValue] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -28,14 +27,6 @@ const AllStations = () => {
       setLoading(false);
     });
   }, []);
-
-  const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchValue(e.target.value);
-  };
-
-  const filteredData = data.filter((obj) =>
-    obj.name.toLowerCase().includes(searchValue.toLowerCase())
-  );
 
   if (loading) {
     return (
@@ -56,9 +47,8 @@ const AllStations = () => {
               pattern="[a-z][0-9]"
               id="search"
               name="search"
-              placeholder="Search by station name.."
+              placeholder="Search by station"
               spellCheck={"false"}
-              onChange={changeHandler}
             ></input>
             <button
               type="submit"
@@ -80,14 +70,13 @@ const AllStations = () => {
           </tr>
         </thead>
         <tbody>
-          {filteredData.map((obj) => {
+          {data.map((obj) => {
             return (
               <StationRow
-                key={obj._id}
                 _id={obj._id}
                 name={obj.name}
                 address={obj.address}
-                city={obj.city}
+                city={obj.city || "Helsinki"}
                 capacity={obj.capacity}
                 operator={obj.operator}
                 x={obj.x}

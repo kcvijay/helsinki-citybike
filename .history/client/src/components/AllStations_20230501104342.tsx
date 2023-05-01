@@ -87,7 +87,7 @@ const AllStations = () => {
                 _id={obj._id}
                 name={obj.name}
                 address={obj.address}
-                city={obj.city}
+                city={obj.city || "Helsinki"}
                 capacity={obj.capacity}
                 operator={obj.operator}
                 x={obj.x}

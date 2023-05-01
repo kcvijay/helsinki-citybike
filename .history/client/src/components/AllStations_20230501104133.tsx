@@ -33,9 +33,11 @@ const AllStations = () => {
     setSearchValue(e.target.value);
   };
 
-  const filteredData = data.filter((obj) =>
-    obj.name.toLowerCase().includes(searchValue.toLowerCase())
-  );
+  const filteredData =
+     data.filter((obj) =>
+      obj.name.toLowerCase().includes(searchValue.toLowerCase())
+    );
+  };
 
   if (loading) {
     return (
@@ -80,14 +82,14 @@ const AllStations = () => {
           </tr>
         </thead>
         <tbody>
-          {filteredData.map((obj) => {
+          {filteredData.map((obj: any) => {
             return (
               <StationRow
                 key={obj._id}
                 _id={obj._id}
                 name={obj.name}
                 address={obj.address}
-                city={obj.city}
+                city={obj.city || "Helsinki"}
                 capacity={obj.capacity}
                 operator={obj.operator}
                 x={obj.x}
