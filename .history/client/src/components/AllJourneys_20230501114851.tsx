@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
 import ReactPaginate from "react-paginate";
 import loader from "../assets/loading.gif";
 import JourneyRow from "./JourneyRow";
 import "../styles/Table.css";
-import "react-toastify/dist/ReactToastify.css";
 
 const AllJourneys = () => {
   interface journeyData {
@@ -45,13 +43,11 @@ const AllJourneys = () => {
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
     if (e.target instanceof HTMLInputElement) {
-      setInputValue((prevState) => ({ ...prevState, search: e.target.value }));
+      setInputValue({ ...inputValue, search: e.target.value });
     } else if (e.target instanceof HTMLSelectElement) {
-      setInputValue((prevState) => ({
-        ...prevState,
-        itemsPerPage: e.target.value,
-      }));
-      itemsPerPageHandler(e.target.value);
+      const itemsPerPage = e.target.value;
+      setInputValue({ ...inputValue, itemsPerPage });
+      itemsPerPageHandler(itemsPerPage);
     }
   };
   const itemsPerPageHandler = (items: string) => {
@@ -59,16 +55,15 @@ const AllJourneys = () => {
     axios
       .get(`http://localhost:4000/api/journeys?limit=${items}`)
       .then((res) => {
+        console.log(inputValue);
         setData(res.data);
-        notify(res.data.length);
+        console.log(res.data);
         setLoading(false);
       })
       .catch((error) => {
         alert("An Error occurred. " + error.message);
       });
   };
-
-  const notify = (items: string) => toast(`Showing ${items} items.`);
 
   //Items filtered based on "duration more than 10 seconds, distance more than 10 meters and search value."
   const filteredData = data.filter(
@@ -82,7 +77,7 @@ const AllJourneys = () => {
 
   if (loading) {
     return (
-      <div className="flex py-[50px] justify-center items-center">
+      <div className="flex py-[50px] flex-col gap-2 md:justify-center md:items-center">
         <img src={loader} alt="Loading icon" />
       </div>
     );
@@ -90,8 +85,7 @@ const AllJourneys = () => {
 
   return (
     <div className="wrapper">
-      <ToastContainer />
-      <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4 mb-8">
+      <div className="flex justify-between items-center  mb-8">
         <h2 className="text-3xl text-white font-bold">All Journeys</h2>
         <form>
           <select

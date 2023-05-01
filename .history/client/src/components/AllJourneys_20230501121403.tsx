@@ -56,11 +56,12 @@ const AllJourneys = () => {
   };
   const itemsPerPageHandler = (items: string) => {
     setLoading(true);
+
     axios
       .get(`http://localhost:4000/api/journeys?limit=${items}`)
       .then((res) => {
         setData(res.data);
-        notify(res.data.length);
+        notify();
         setLoading(false);
       })
       .catch((error) => {
@@ -68,7 +69,7 @@ const AllJourneys = () => {
       });
   };
 
-  const notify = (items: string) => toast(`Showing ${items} items.`);
+  const notify = () => toast(`Showing ${inputValue.itemsPerPage} items.`);
 
   //Items filtered based on "duration more than 10 seconds, distance more than 10 meters and search value."
   const filteredData = data.filter(

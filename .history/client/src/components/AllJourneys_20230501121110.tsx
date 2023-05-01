@@ -47,10 +47,7 @@ const AllJourneys = () => {
     if (e.target instanceof HTMLInputElement) {
       setInputValue((prevState) => ({ ...prevState, search: e.target.value }));
     } else if (e.target instanceof HTMLSelectElement) {
-      setInputValue((prevState) => ({
-        ...prevState,
-        itemsPerPage: e.target.value,
-      }));
+      setInputValue((prevState) => ({ ...inputValue, itemsPerPage }));
       itemsPerPageHandler(e.target.value);
     }
   };
@@ -59,16 +56,17 @@ const AllJourneys = () => {
     axios
       .get(`http://localhost:4000/api/journeys?limit=${items}`)
       .then((res) => {
+        console.log(inputValue);
         setData(res.data);
-        notify(res.data.length);
         setLoading(false);
+        notify();
       })
       .catch((error) => {
         alert("An Error occurred. " + error.message);
       });
   };
 
-  const notify = (items: string) => toast(`Showing ${items} items.`);
+  const notify = () => toast(`Showing ${inputValue.itemsPerPage} items.`);
 
   //Items filtered based on "duration more than 10 seconds, distance more than 10 meters and search value."
   const filteredData = data.filter(

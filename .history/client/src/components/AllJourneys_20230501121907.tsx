@@ -56,6 +56,7 @@ const AllJourneys = () => {
   };
   const itemsPerPageHandler = (items: string) => {
     setLoading(true);
+
     axios
       .get(`http://localhost:4000/api/journeys?limit=${items}`)
       .then((res) => {
