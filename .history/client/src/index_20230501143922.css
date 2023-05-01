@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .active {
+    @apply bg-orange-300;
+  }
+
+  .wrapper {
+    @apply max-w-[1400px] mx-auto p-[48px];
+  }
+
+  .btn-primary {
+    @apply inline-block bg-orange-400 text-white px-12 py-4 rounded-md border-2 border-orange-400 hover:border-white transition-all duration-300;
+  }
+
+  ul a {
+    background: black;
+    padding: 1rem;
+    display: inline-block;
+  }
+}
