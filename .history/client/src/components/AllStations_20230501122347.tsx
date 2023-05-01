@@ -28,13 +28,12 @@ const AllStations = () => {
 
   useEffect(() => {
     setLoading(true);
-    axios.get("http://localhost:4000/api/stations?limit=").then((res) => {
+    axios.get("http://localhost:4000/api/stations?limit=500").then((res) => {
       setData(res.data);
       setLoading(false);
     });
   }, []);
 
-  // Providing two parameters for HTML change event,
   const changeHandler = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {

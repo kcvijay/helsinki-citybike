@@ -2,10 +2,9 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
+import "../styles/Table.css";
 import loader from "../assets/loading.gif";
 import StationRow from "./StationRow";
-import "../styles/Table.css";
-import "react-toastify/dist/ReactToastify.css";
 
 const AllStations = () => {
   interface stationData {
@@ -28,13 +27,12 @@ const AllStations = () => {
 
   useEffect(() => {
     setLoading(true);
-    axios.get("http://localhost:4000/api/stations?limit=").then((res) => {
+    axios.get("http://localhost:4000/api/stations?limit=500").then((res) => {
       setData(res.data);
       setLoading(false);
     });
   }, []);
 
-  // Providing two parameters for HTML change event,
   const changeHandler = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
@@ -63,10 +61,8 @@ const AllStations = () => {
       });
   };
 
-  const notify = (items: string) => toast(`Showing ${items} items.`);
-
   const filteredData = data.filter((obj) =>
-    obj.name.toLowerCase().includes(inputValue.search.toLowerCase())
+    obj.name.toLowerCase().includes(searchValue.toLowerCase())
   );
 
   if (loading) {
@@ -78,7 +74,6 @@ const AllStations = () => {
   }
   return (
     <div className="wrapper">
-      <ToastContainer />
       <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4 mb-8">
         <h2 className="text-3xl text-white font-bold mb-8">All Stations</h2>
         <form>
