@@ -40,9 +40,7 @@ const StationRow = ({
       <td data-cell="Operator">
         {operator === " " ? "CityBike Finland" : operator}
       </td>
-      <td data-cell="X" className="text-center">
-        {x}
-      </td>
+      <td data-cell="X">{x}</td>
       <td className="text-center" data-cell="Y">
         {y}
       </td>

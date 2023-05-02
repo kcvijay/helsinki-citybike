@@ -13,6 +13,13 @@ th {
   font-weight: 400;
 }
 
+th:nth-child(7),
+th:nth-child(8),
+td:nth-child(7),
+td:nth-child(8) {
+  text-align: center;
+}
+
 tbody tr:nth-child(2n) {
   background: #fff0d3;
 }

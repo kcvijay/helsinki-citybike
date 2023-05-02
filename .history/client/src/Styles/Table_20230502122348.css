@@ -1,16 +1,18 @@
-table {
-  table-layout: auto;
-}
-
 th,
 td {
-  text-align: left;
-
+  max-width: 200px;
   padding: 10px;
 }
 
 th {
   font-weight: 400;
+}
+
+th:nth-child(7),
+th:nth-child(8),
+td:nth-child(7),
+td:nth-child(8) {
+  text-align: center;
 }
 
 tbody tr:nth-child(2n) {
@@ -39,7 +41,7 @@ a:hover {
     display: none;
   }
 
-  tbody tr td {
+  tr td {
     display: grid;
     grid-template-columns: 1fr 1fr;
     justify-items: left;

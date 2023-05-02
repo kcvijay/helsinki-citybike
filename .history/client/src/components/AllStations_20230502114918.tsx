@@ -2,7 +2,6 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
-import ReactPaginate from "react-paginate";
 import loader from "../assets/loading.gif";
 import StationRow from "./StationRow";
 import "../styles/Table.css";
@@ -24,7 +23,6 @@ const AllStations = () => {
   const [data, setData] = useState<stationData[]>([]);
   const [loading, setLoading] = useState(false);
   const [search, setSearch] = useState("");
-  const [firstIndex, setFirstIndex] = useState(0);
   const [itemsPerPage, setItemsPerPage] = useState(25);
 
   const navigate = useNavigate();
@@ -34,14 +32,6 @@ const AllStations = () => {
     handleFetchData(1000, 0);
   }, []);
 
-  useEffect(() => {
-    if (itemsPerPage < 0) {
-      handleFetchData(itemsPerPage, 0).then(() => {
-        notify(data.length);
-      });
-    }
-  }, [itemsPerPage, data.length]);
-
   // Providing two parameters for HTML change event,
   const changeHandler = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -49,7 +39,7 @@ const AllStations = () => {
     if (e.target instanceof HTMLInputElement) {
       setSearch(e.target.value);
     } else if (e.target instanceof HTMLSelectElement) {
-      setItemsPerPage(+e.target.value);
+      handleFetchData(itemsPerPage, 0);
     }
   };
 
@@ -65,27 +55,17 @@ const AllStations = () => {
     setLoading(false);
   };
 
-  const notify = (items: number) => toast(`Showing ${items} items.`);
-
-  const filteredData = data.filter((obj) => {
-    return (
-      obj.name.toLowerCase().includes(search.toLowerCase()) ||
-      obj.station_id === search
-    );
-  });
-
-  // For Pagination //
-  const endIndex = firstIndex + itemsPerPage;
-  const currentItems = filteredData.slice(firstIndex, endIndex);
-  const pageCount = Math.ceil(data.length / itemsPerPage);
-
-  const handlePageClick = (e: any) => {
-    const newOffset = e.selected + 1 * itemsPerPage;
-    const maxOffset = data.length - itemsPerPage;
-    const clampedOffset = Math.min(newOffset, maxOffset);
-    setFirstIndex(clampedOffset);
+  const handleItemsPerPage = () => {
+    setLoading(true);
+    handleFetchData(itemsPerPage, 0);
+    setLoading(false);
   };
-  ////
+
+  const notify = (items: string) => toast(`Showing ${items} items.`);
+
+  const filteredData = data.filter((obj) =>
+    obj.name.toLowerCase().includes(search.toLowerCase())
+  );
 
   if (loading) {
     return (
@@ -94,8 +74,6 @@ const AllStations = () => {
       </div>
     );
   }
-
-  console.log(itemsPerPage);
   return (
     <div className="wrapper">
       <ToastContainer autoClose={3000} />
@@ -107,15 +85,15 @@ const AllStations = () => {
             className="px-4 py-2 rounded-md"
             id="itemsPerPage"
             name="itemsPerPage"
-            onChange={changeHandler}
+            onChange={(e) => setItemsPerPage(+e.target.value)}
           >
             <option value="default" disabled>
               Items per page
             </option>
-            <option value="25">25 items</option>
-            <option value="50">50 items</option>
-            <option value="75">75 items</option>
-            <option value="100">100 items</option>
+            <option value="25">25</option>
+            <option value="50">50</option>
+            <option value="75">75</option>
+            <option value="100">100</option>
           </select>
         </form>
       </div>
@@ -142,17 +120,18 @@ const AllStations = () => {
         </caption>
         <thead className=" border-collapse bg-orange-600 text-white">
           <tr>
-            <th>Station Name (id)</th>
+            <th>S.No.</th>
+            <th>Name</th>
             <th>Address</th>
             <th>City</th>
             <th className="text-center">Capacity</th>
             <th>Operator</th>
-            <th className="text-center">X</th>
+            <th>X</th>
             <th className="text-center">Y</th>
           </tr>
         </thead>
         <tbody>
-          {currentItems.map((obj) => {
+          {filteredData.map((obj, i) => {
             return (
               <StationRow
                 _id={obj._id}
@@ -170,24 +149,6 @@ const AllStations = () => {
           })}
         </tbody>
       </table>
-      <div className="bg-white text-black w-full">
-        <ReactPaginate
-          activeClassName={"item activePage "}
-          breakClassName={"item break-me "}
-          breakLabel={"..."}
-          containerClassName={"pagination"}
-          disabledClassName={"disabled-page"}
-          nextClassName={"item next "}
-          pageClassName={"item pagination-page "}
-          nextLabel="next >"
-          previousClassName={"item previous"}
-          onPageChange={handlePageClick}
-          pageRangeDisplayed={5}
-          pageCount={pageCount}
-          previousLabel="< previous"
-          renderOnZeroPageCount={null}
-        />
-      </div>
       <button
         className="inline-block btn-primary mt-6"
         onClick={() => navigate(-1)}

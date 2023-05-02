@@ -36,11 +36,9 @@ const AllStations = () => {
 
   useEffect(() => {
     if (itemsPerPage < 0) {
-      handleFetchData(itemsPerPage, 0).then(() => {
-        notify(data.length);
-      });
+      handleFetchData(itemsPerPage, 0);
     }
-  }, [itemsPerPage, data.length]);
+  }, [itemsPerPage]);
 
   // Providing two parameters for HTML change event,
   const changeHandler = (
@@ -65,7 +63,7 @@ const AllStations = () => {
     setLoading(false);
   };
 
-  const notify = (items: number) => toast(`Showing ${items} items.`);
+  const notify = (items: string) => toast(`Showing ${items} items.`);
 
   const filteredData = data.filter((obj) => {
     return (
@@ -84,6 +82,7 @@ const AllStations = () => {
     const maxOffset = data.length - itemsPerPage;
     const clampedOffset = Math.min(newOffset, maxOffset);
     setFirstIndex(clampedOffset);
+    console.log(e);
   };
   ////
 

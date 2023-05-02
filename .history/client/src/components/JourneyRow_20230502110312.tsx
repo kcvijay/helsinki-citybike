@@ -16,7 +16,6 @@ interface tableRowProps {
 
 const JourneyRow = ({
   _id,
-  serial,
   dep_station,
   dep_station_id,
   dep_time,
@@ -34,22 +33,17 @@ const JourneyRow = ({
 
   return (
     <tr>
+      <td data-cell="Serial">{serial}</td>
       <td data-cell="Depart. Station (id)">
-        <Link to={`${dep_station_id}`}>
-          {dep_station} ({dep_station_id})
-        </Link>
+        {dep_station} ({dep_station_id})
       </td>
       <td data-cell="Depart. Time">{convertToLocaleString(dep_time)}</td>
       <td data-cell="Return Station (id)">
         {return_station} ({return_station_id})
       </td>
       <td data-cell="Return Time">{convertToLocaleString(return_time)}</td>
-      <td data-cell="Distance (km)" className="text-center">
-        {Number(distance)}
-      </td>
-      <td data-cell="Duration (min)" className="text-center">
-        {duration}
-      </td>
+      <td data-cell="Distance (km)">{Number(distance)}</td>
+      <td data-cell="Duration (min)">{duration}</td>
     </tr>
   );
 };

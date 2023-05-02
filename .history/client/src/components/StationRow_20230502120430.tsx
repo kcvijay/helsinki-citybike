@@ -29,7 +29,7 @@ const StationRow = ({
       {/* <td data-cell="S.No.">{station_id}</td> */}
       <td data-cell="Name">
         <Link to={`${_id}`}>
-          {name} ({station_id})
+          {name} {station_id}
         </Link>
       </td>
       <td data-cell="Address">{address}</td>
@@ -40,9 +40,7 @@ const StationRow = ({
       <td data-cell="Operator">
         {operator === " " ? "CityBike Finland" : operator}
       </td>
-      <td data-cell="X" className="text-center">
-        {x}
-      </td>
+      <td data-cell="X">{x}</td>
       <td className="text-center" data-cell="Y">
         {y}
       </td>

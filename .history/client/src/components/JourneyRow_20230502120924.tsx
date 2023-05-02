@@ -44,12 +44,8 @@ const JourneyRow = ({
         {return_station} ({return_station_id})
       </td>
       <td data-cell="Return Time">{convertToLocaleString(return_time)}</td>
-      <td data-cell="Distance (km)" className="text-center">
-        {Number(distance)}
-      </td>
-      <td data-cell="Duration (min)" className="text-center">
-        {duration}
-      </td>
+      <td data-cell="Distance (km)">{Number(distance)}</td>
+      <td data-cell="Duration (min)">{duration}</td>
     </tr>
   );
 };

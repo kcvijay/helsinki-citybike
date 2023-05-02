@@ -26,11 +26,9 @@ const StationRow = ({
 }: stationRowProps) => {
   return (
     <tr>
-      {/* <td data-cell="S.No.">{station_id}</td> */}
+      <td data-cell="S.No.">{station_id}</td>
       <td data-cell="Name">
-        <Link to={`${_id}`}>
-          {name} ({station_id})
-        </Link>
+        <Link to={`${_id}`}>{name}</Link>
       </td>
       <td data-cell="Address">{address}</td>
       <td data-cell="City">{city === " " ? "Helsinki" : city}</td>
@@ -40,9 +38,7 @@ const StationRow = ({
       <td data-cell="Operator">
         {operator === " " ? "CityBike Finland" : operator}
       </td>
-      <td data-cell="X" className="text-center">
-        {x}
-      </td>
+      <td data-cell="X">{x}</td>
       <td className="text-center" data-cell="Y">
         {y}
       </td>

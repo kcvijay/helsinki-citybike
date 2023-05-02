@@ -40,7 +40,7 @@ const AllStations = () => {
         notify(data.length);
       });
     }
-  }, [itemsPerPage, data.length]);
+  }, [itemsPerPage]);
 
   // Providing two parameters for HTML change event,
   const changeHandler = (
@@ -65,7 +65,7 @@ const AllStations = () => {
     setLoading(false);
   };
 
-  const notify = (items: number) => toast(`Showing ${items} items.`);
+  const notify = (items: string) => toast(`Showing ${items} items.`);
 
   const filteredData = data.filter((obj) => {
     return (

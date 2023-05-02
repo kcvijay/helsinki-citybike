@@ -1,48 +1,53 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import ReactPaginate from "react-paginate";
+import axios from "axios";
 import loader from "../assets/loading.gif";
-import StationRow from "./StationRow";
+import JourneyRow from "./JourneyRow";
 import "../styles/Table.css";
+import "../styles/AllJourneys.css";
 import "react-toastify/dist/ReactToastify.css";
 
-const AllStations = () => {
-  interface stationData {
+const AllJourneys = () => {
+  interface journeyData {
     _id: string;
-    station_id: string;
-    serial: number;
-    name: string;
-    address: string;
-    city: string;
-    operator: string;
-    capacity: number;
-    x: string;
-    y: string;
+    departure_station_name: string;
+    departure_station_id: string;
+    departure: Date;
+    return_station_name: string;
+    return_station_id: string;
+    return: Date;
+    covered_distance: number;
+    duration: number;
   }
-  const [data, setData] = useState<stationData[]>([]);
+
+  const [data, setData] = useState<journeyData[]>([]);
   const [loading, setLoading] = useState(false);
   const [search, setSearch] = useState("");
   const [firstIndex, setFirstIndex] = useState(0);
   const [itemsPerPage, setItemsPerPage] = useState(25);
-
   const navigate = useNavigate();
 
-  // Page on load-- fetch all items
+  // On Page load...Intial fetch//
   useEffect(() => {
-    handleFetchData(1000, 0);
+    handleFetchData(3000, 0);
   }, []);
+  ////
 
+  // RE-fetch the data on 'items per page' change.//
   useEffect(() => {
     if (itemsPerPage < 0) {
-      handleFetchData(itemsPerPage, 0).then(() => {
-        notify(data.length);
-      });
+      handleFetchData(itemsPerPage, 0);
+      toastify(data.length);
     }
   }, [itemsPerPage, data.length]);
+  ////
 
-  // Providing two parameters for HTML change event,
+  const toastify = (noOfItems: number) =>
+    toast.success(`Showing ${noOfItems} items.`);
+
+  // On input change.//
   const changeHandler = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
@@ -52,27 +57,30 @@ const AllStations = () => {
       setItemsPerPage(+e.target.value);
     }
   };
+  ////
 
-  const handleFetchData = async (items: number, offset: number) => {
+  // Function for fetching data.//
+  const handleFetchData = async (fetchedItems?: number, offset?: number) => {
     setLoading(true);
-    const limit = items === undefined ? "" : items;
+    const limit = fetchedItems === undefined ? "" : fetchedItems;
     const skip = offset === undefined ? "" : offset;
-
-    const res = await axios.get(
-      `http://localhost:4000/api/stations?limit=${limit}&skip=${skip}`
-    );
-    setData(res.data);
-    setLoading(false);
+    await axios
+      .get(`http://localhost:4000/api/journeys?limit=${limit}&skip=${skip}`)
+      .then((res) => {
+        setData(res.data);
+        setLoading(false);
+      });
   };
+  ////
 
-  const notify = (items: number) => toast(`Showing ${items} items.`);
-
-  const filteredData = data.filter((obj) => {
-    return (
-      obj.name.toLowerCase().includes(search.toLowerCase()) ||
-      obj.station_id === search
-    );
-  });
+  //Items filtered based on "duration more than 10 seconds, distance more than 10 meters and search value."//
+  const filteredData = data.filter(
+    (obj) =>
+      obj.duration > 10 &&
+      obj.covered_distance > 10 &&
+      obj.departure_station_name.toLowerCase().includes(search.toLowerCase())
+  );
+  ////
 
   // For Pagination //
   const endIndex = firstIndex + itemsPerPage;
@@ -84,6 +92,7 @@ const AllStations = () => {
     const maxOffset = data.length - itemsPerPage;
     const clampedOffset = Math.min(newOffset, maxOffset);
     setFirstIndex(clampedOffset);
+    console.log(e);
   };
   ////
 
@@ -95,12 +104,11 @@ const AllStations = () => {
     );
   }
 
-  console.log(itemsPerPage);
   return (
     <div className="wrapper">
       <ToastContainer autoClose={3000} />
       <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4 mb-8">
-        <h2 className="text-3xl text-white font-bold">All Stations</h2>
+        <h2 className="text-3xl text-white font-bold">All Journeys</h2>
         <form>
           <select
             defaultValue={"default"}
@@ -128,7 +136,7 @@ const AllStations = () => {
               pattern="[a-z][0-9]"
               id="search"
               name="search"
-              placeholder="Search by station name.."
+              placeholder="Search by departure station.."
               spellCheck={"false"}
               onChange={changeHandler}
             ></input>
@@ -142,29 +150,28 @@ const AllStations = () => {
         </caption>
         <thead className=" border-collapse bg-orange-600 text-white">
           <tr>
-            <th>Station Name (id)</th>
-            <th>Address</th>
-            <th>City</th>
-            <th className="text-center">Capacity</th>
-            <th>Operator</th>
-            <th className="text-center">X</th>
-            <th className="text-center">Y</th>
+            <th>Depart. Station (id)</th>
+            <th>Depart. Time</th>
+            <th>Return Station (id)</th>
+            <th>Return Time</th>
+            <th>Distance(km)</th>
+            <th>Duration(min)</th>
           </tr>
         </thead>
         <tbody>
           {currentItems.map((obj) => {
             return (
-              <StationRow
-                _id={obj._id}
+              <JourneyRow
                 key={obj._id}
-                station_id={obj.station_id}
-                name={obj.name}
-                address={obj.address}
-                city={obj.city}
-                capacity={obj.capacity}
-                operator={obj.operator}
-                x={obj.x}
-                y={obj.y}
+                _id={obj._id}
+                dep_station={obj.departure_station_name}
+                dep_station_id={obj.departure_station_id}
+                dep_time={obj.departure}
+                return_station={obj.return_station_name}
+                return_station_id={obj.return_station_id}
+                return_time={obj.return}
+                distance={Math.round((obj.covered_distance / 1000) * 100) / 100}
+                duration={Math.floor(obj.duration / 60)}
               />
             );
           })}
@@ -188,6 +195,7 @@ const AllStations = () => {
           renderOnZeroPageCount={null}
         />
       </div>
+
       <button
         className="inline-block btn-primary mt-6"
         onClick={() => navigate(-1)}
@@ -198,4 +206,4 @@ const AllStations = () => {
   );
 };
 
-export default AllStations;
+export default AllJourneys;

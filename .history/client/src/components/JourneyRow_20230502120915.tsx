@@ -47,9 +47,7 @@ const JourneyRow = ({
       <td data-cell="Distance (km)" className="text-center">
         {Number(distance)}
       </td>
-      <td data-cell="Duration (min)" className="text-center">
-        {duration}
-      </td>
+      <td data-cell="Duration (min)">{duration}</td>
     </tr>
   );
 };
