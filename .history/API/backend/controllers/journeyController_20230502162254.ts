@@ -1,0 +1,60 @@
+import { Request, Response } from "express";
+const { Journey, Station } = require("../schema/mongooseSchema");
+import mongoose from "mongoose";
+
+const asyncHandler = require("express-async-handler");
+
+// Switching between "journeys" and "stations" collections as they're in different collections.
+
+const getAllData = asyncHandler(
+  async (req: Request, res: Response, collectionName: string) => {
+    let collection: any;
+    switch (collectionName) {
+      case "journeys":
+        collection = Journey;
+        break;
+      case "stations":
+        collection = Station;
+        break;
+      default:
+        throw new Error(`Collection ${collectionName} does not exist.`);
+    }
+    const limit = req.query.limit as number | undefined;
+    const offset = (req.query.offset as number | undefined) || 0; // Default offset as 0.
+    const data = await collection.find().skip(offset).limit(limit);
+    res.status(200).json(data);
+  }
+);
+
+const getData = asyncHandler(
+  async (req: Request, res: Response, collectionName: string) => {
+    let collection: any;
+    switch (collectionName) {
+      case "journeys":
+        collection = Journey;
+        break;
+      case "stations":
+        collection = Station;
+        break;
+      default:
+        throw new Error(`Collection ${collectionName} does not exist.`);
+    }
+
+    const name = req.body.find((item) => item === station_name);
+
+    if (!mongoose.Types.ObjectId.isValid(name)) {
+      res.status(400);
+      console.log(`${req.params.id} is not a valid ID.`);
+    }
+
+    const data = await collection.findById(name);
+
+    if (!data) {
+      res.status(404);
+      console.log("data not found.");
+    }
+    res.status(200).json(data);
+  }
+);
+
+module.exports = { getAllData, getData };
