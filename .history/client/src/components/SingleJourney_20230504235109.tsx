@@ -76,7 +76,7 @@ const SingleJourney = () => {
 
   useEffect(() => {
     if (journeyData) {
-      const handleReturnStationData = async () => {
+      const handleReturnStationData = () => {
         setLoading(true);
         try {
           const res = await axios.get(
@@ -93,22 +93,23 @@ const SingleJourney = () => {
   }, [journeyData]);
 
   useEffect(() => {
-    if (returnStationData) {
-      const handleDepartureStationData = async () => {
-        setLoading(true);
-        try {
-          const res = await axios.get(
-            `http://localhost:4000/api/stations/${journeyData?.departure_station_id}`
-          );
-          setDepartureStationData(res.data);
-          setLoading(false);
-        } catch (error: any) {
-          alert(error.message);
-        }
-      };
-      handleDepartureStationData();
+    handleReturnStationData();
+  }, []);
+
+  const handleDepartureStationData = async () => {
+    setLoading(true);
+    try {
+      const res = await axios.get(
+        `http://localhost:4000/api/stations/${journeyData?.departure_station_id}`
+      );
+      setDepartureStationData(res.data);
+      setLoading(false);
+    } catch (error: any) {
+      alert(error.message);
     }
-  }, [journeyData?.departure_station_id, returnStationData]);
+  };
+
+  const handleReturnStationData = async () => {};
 
   // Formatting to readable Finnish type date format!
   const convertToLocaleString = (oldDateFormat: any) => {

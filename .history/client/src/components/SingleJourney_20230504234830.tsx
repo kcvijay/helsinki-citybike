@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import loader from "../assets/loading.gif";
 
 const SingleJourney = () => {
@@ -75,40 +75,38 @@ const SingleJourney = () => {
   }, []);
 
   useEffect(() => {
-    if (journeyData) {
-      const handleReturnStationData = async () => {
-        setLoading(true);
-        try {
-          const res = await axios.get(
-            `http://localhost:4000/api/stations/${journeyData?.return_station_id}`
-          );
-          setReturnStationData(res.data);
-          setLoading(false);
-        } catch (error: any) {
-          alert("Something went wrong. " + error.message);
-        }
-      };
-      handleReturnStationData();
-    }
-  }, [journeyData]);
+    handleDepartureStationData();
+  }, []);
 
   useEffect(() => {
-    if (returnStationData) {
-      const handleDepartureStationData = async () => {
-        setLoading(true);
-        try {
-          const res = await axios.get(
-            `http://localhost:4000/api/stations/${journeyData?.departure_station_id}`
-          );
-          setDepartureStationData(res.data);
-          setLoading(false);
-        } catch (error: any) {
-          alert(error.message);
-        }
-      };
-      handleDepartureStationData();
+    handleReturnStationData();
+  }, []);
+
+  const handleDepartureStationData = async () => {
+    setLoading(true);
+    try {
+      const res = await axios.get(
+        `http://localhost:4000/api/stations/${journeyData?.departure_station_id}`
+      );
+      setDepartureStationData(res.data);
+      setLoading(false);
+    } catch (error: any) {
+      alert(error.message);
     }
-  }, [journeyData?.departure_station_id, returnStationData]);
+  };
+
+  const handleReturnStationData = async () => {
+    setLoading(true);
+    try {
+      const res = await axios.get(
+        `http://localhost:4000/api/stations/${journeyData?.return_station_id}`
+      );
+      setReturnStationData(res.data);
+      setLoading(false);
+    } catch (error: any) {
+      alert("Something went wrong. " + error.message);
+    }
+  };
 
   // Formatting to readable Finnish type date format!
   const convertToLocaleString = (oldDateFormat: any) => {

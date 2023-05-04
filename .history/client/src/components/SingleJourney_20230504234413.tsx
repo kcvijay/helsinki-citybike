@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import loader from "../assets/loading.gif";
 
 const SingleJourney = () => {
@@ -75,40 +75,38 @@ const SingleJourney = () => {
   }, []);
 
   useEffect(() => {
-    if (journeyData) {
-      const handleReturnStationData = async () => {
-        setLoading(true);
-        try {
-          const res = await axios.get(
-            `http://localhost:4000/api/stations/${journeyData?.return_station_id}`
-          );
-          setReturnStationData(res.data);
-          setLoading(false);
-        } catch (error: any) {
-          alert("Something went wrong. " + error.message);
-        }
-      };
-      handleReturnStationData();
-    }
-  }, [journeyData]);
+    handleDepartureStationData();
+  }, []);
 
   useEffect(() => {
-    if (returnStationData) {
-      const handleDepartureStationData = async () => {
-        setLoading(true);
-        try {
-          const res = await axios.get(
-            `http://localhost:4000/api/stations/${journeyData?.departure_station_id}`
-          );
-          setDepartureStationData(res.data);
-          setLoading(false);
-        } catch (error: any) {
-          alert(error.message);
-        }
-      };
-      handleDepartureStationData();
+    handleReturnStationData();
+  }, []);
+
+  const handleDepartureStationData = async () => {
+    setLoading(true);
+    try {
+      const res = await axios.get(
+        `http://localhost:4000/api/stations/${journeyData?.departure_station_id}`
+      );
+      setDepartureStationData(res.data);
+      setLoading(false);
+    } catch (error: any) {
+      alert(error.message);
     }
-  }, [journeyData?.departure_station_id, returnStationData]);
+  };
+
+  const handleReturnStationData = async () => {
+    setLoading(true);
+    try {
+      const res = await axios.get(
+        `http://localhost:4000/api/stations/${journeyData?.return_station_id}`
+      );
+      setReturnStationData(res.data);
+      setLoading(false);
+    } catch (error: any) {
+      alert("Something went wrong. " + error.message);
+    }
+  };
 
   // Formatting to readable Finnish type date format!
   const convertToLocaleString = (oldDateFormat: any) => {
@@ -165,14 +163,14 @@ const SingleJourney = () => {
           </div>
         </div>
 
-        {loading && !journeyData ? (
+        {loading && journeyData ? (
           <div className="text-2xl text-black bg-slate-200 p-[50px] mt-12 font-bold flex justify-center items-center">
             Map is loading...
           </div>
         ) : (
           <div className="mt-12">
             <iframe
-              className="w-full min-h-[400px]"
+              className="w-full h-[400px]"
               title="map"
               src={`https://www.google.com/maps/embed?pb=!1m26!1m12!1m3!1d7930.444132094687!2d24.862119030184367!3d60.20371979912591!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m11!3e1!4m4!2s${departureStationData?.y}%2C${departureStationData?.x}!3m2!1d${departureStationData?.y}!2d${departureStationData?.x}!4m4!2s${returnStationData?.y}%2C%20${returnStationData?.x}!3m2!1d${returnStationData?.y}!2d${returnStationData?.x}!5e0!3m2!1sfi!2sfi!4v1683216115271!5m2!1sfi!2sfi`}
               loading={"lazy"}

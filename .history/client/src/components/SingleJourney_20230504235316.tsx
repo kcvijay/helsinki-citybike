@@ -106,9 +106,10 @@ const SingleJourney = () => {
           alert(error.message);
         }
       };
-      handleDepartureStationData();
     }
-  }, [journeyData?.departure_station_id, returnStationData]);
+  }, []);
+
+  const handleReturnStationData = async () => {};
 
   // Formatting to readable Finnish type date format!
   const convertToLocaleString = (oldDateFormat: any) => {
