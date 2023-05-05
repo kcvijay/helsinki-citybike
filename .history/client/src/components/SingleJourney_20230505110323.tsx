@@ -131,12 +131,14 @@ const SingleJourney = () => {
   return (
     <>
       <div className="wrapper">
-        <div className="text-white md:flex">
+        <div className="text-white flex flex-wrap">
           <div className="w-full">
             <p className="text-lg">From</p>
             <h2 className="text-xl md:text-3xl text-white font-bold uppercase mb-8">
-              {journeyData?.departure_station_name} (
-              {journeyData?.departure_station_id})
+              {journeyData?.departure_station_name}
+              <span className="inline-block bg-orange-500 ml-4 px-4 py-1 rounded-md">
+                ID {journeyData?.departure_station_id}
+              </span>
               <span className="block w-max text-xl text-white rounded-md font-normal">
                 {convertToLocaleString(journeyData?.departure)}
               </span>
@@ -145,8 +147,10 @@ const SingleJourney = () => {
           <div className="w-full">
             <p className="text-lg">To</p>
             <h2 className="text-xl md:text-3xl text-white font-bold uppercase mb-8">
-              {journeyData?.return_station_name} (
-              {journeyData?.return_station_id})
+              {journeyData?.return_station_name}
+              <span className="inline-block bg-orange-500 ml-4 px-4 py-1 rounded-md">
+                ID {journeyData?.return_station_id}
+              </span>
               <span className="block w-max text-xl text-white rounded-md font-normal">
                 {convertToLocaleString(journeyData?.return)}
               </span>

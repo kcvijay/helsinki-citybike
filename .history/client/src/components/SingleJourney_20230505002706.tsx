@@ -130,55 +130,58 @@ const SingleJourney = () => {
 
   return (
     <>
-      <div className="wrapper">
-        <div className="text-white md:flex">
-          <div className="w-full">
+      <div className="wrapper flex">
+        <div className="text-white">
+          <div>
             <p className="text-lg">From</p>
             <h2 className="text-xl md:text-3xl text-white font-bold uppercase mb-8">
-              {journeyData?.departure_station_name} (
-              {journeyData?.departure_station_id})
+              {journeyData?.departure_station_name}
+              <span className="inline-block bg-orange-500 ml-4 px-4 py-1 rounded-md">
+                ID {journeyData?.departure_station_id}
+              </span>
               <span className="block w-max text-xl text-white rounded-md font-normal">
                 {convertToLocaleString(journeyData?.departure)}
               </span>
             </h2>
-          </div>
-          <div className="w-full">
             <p className="text-lg">To</p>
             <h2 className="text-xl md:text-3xl text-white font-bold uppercase mb-8">
-              {journeyData?.return_station_name} (
-              {journeyData?.return_station_id})
+              {journeyData?.return_station_name}
+              <span className="inline-block bg-orange-500 ml-4 px-4 py-1 rounded-md">
+                ID {journeyData?.return_station_id}
+              </span>
               <span className="block w-max text-xl text-white rounded-md font-normal">
                 {convertToLocaleString(journeyData?.return)}
               </span>
             </h2>
           </div>
-        </div>
-        <div className="text-xl flex items-center gap-4">
-          <p className="inline-block bg-white px-4 py-2 text-black rounded-md">
-            {journeyData?.covered_distance &&
-              (journeyData.covered_distance / 1000).toFixed(2)}{" "}
-            km
-          </p>
-          <p className="inline-block bg-white px-4 py-2 text-black rounded-md">
-            {journeyData?.duration && (journeyData.duration / 60).toFixed(0)}{" "}
-            min
-          </p>
+
+          <div className="text-xl flex items-center gap-4">
+            <p className="inline-block bg-white px-4 py-2 text-black rounded-md">
+              {journeyData?.covered_distance &&
+                (journeyData.covered_distance / 1000).toFixed(2)}{" "}
+              km
+            </p>
+            <p className="inline-block bg-white px-4 py-2 text-black rounded-md">
+              {journeyData?.duration && (journeyData.duration / 60).toFixed(0)}{" "}
+              min
+            </p>
+          </div>
         </div>
         <div className="mt-12">
           <iframe
-            className="w-full min-h-[400px]"
+            className="w-full h-full"
             title="map"
             src={`https://www.google.com/maps/embed?pb=!1m26!1m12!1m3!1d7930.444132094687!2d24.862119030184367!3d60.20371979912591!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m11!3e1!4m4!2s${departureStationData?.y}%2C${departureStationData?.x}!3m2!1d${departureStationData?.y}!2d${departureStationData?.x}!4m4!2s${returnStationData?.y}%2C%20${returnStationData?.x}!3m2!1d${returnStationData?.y}!2d${returnStationData?.x}!5e0!3m2!1sfi!2sfi!4v1683216115271!5m2!1sfi!2sfi`}
             loading={"lazy"}
             referrerPolicy={"no-referrer-when-downgrade"}
           ></iframe>
+          <button
+            className="inline-block btn-primary mt-6"
+            onClick={() => navigate(-1)}
+          >
+            &larr; Go Back
+          </button>
         </div>
-        <button
-          className="inline-block btn-primary mt-6"
-          onClick={() => navigate(-1)}
-        >
-          &larr; Go Back
-        </button>
       </div>
     </>
   );

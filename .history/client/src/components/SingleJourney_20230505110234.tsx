@@ -131,38 +131,43 @@ const SingleJourney = () => {
   return (
     <>
       <div className="wrapper">
-        <div className="text-white md:flex">
-          <div className="w-full">
+        <div className="text-white">
+          <div>
             <p className="text-lg">From</p>
             <h2 className="text-xl md:text-3xl text-white font-bold uppercase mb-8">
-              {journeyData?.departure_station_name} (
-              {journeyData?.departure_station_id})
+              {journeyData?.departure_station_name}
+              <span className="inline-block bg-orange-500 ml-4 px-4 py-1 rounded-md">
+                ID {journeyData?.departure_station_id}
+              </span>
               <span className="block w-max text-xl text-white rounded-md font-normal">
                 {convertToLocaleString(journeyData?.departure)}
               </span>
             </h2>
           </div>
-          <div className="w-full">
+          <div>
             <p className="text-lg">To</p>
             <h2 className="text-xl md:text-3xl text-white font-bold uppercase mb-8">
-              {journeyData?.return_station_name} (
-              {journeyData?.return_station_id})
+              {journeyData?.return_station_name}
+              <span className="inline-block bg-orange-500 ml-4 px-4 py-1 rounded-md">
+                ID {journeyData?.return_station_id}
+              </span>
               <span className="block w-max text-xl text-white rounded-md font-normal">
                 {convertToLocaleString(journeyData?.return)}
               </span>
             </h2>
           </div>
-        </div>
-        <div className="text-xl flex items-center gap-4">
-          <p className="inline-block bg-white px-4 py-2 text-black rounded-md">
-            {journeyData?.covered_distance &&
-              (journeyData.covered_distance / 1000).toFixed(2)}{" "}
-            km
-          </p>
-          <p className="inline-block bg-white px-4 py-2 text-black rounded-md">
-            {journeyData?.duration && (journeyData.duration / 60).toFixed(0)}{" "}
-            min
-          </p>
+
+          <div className="text-xl flex items-center gap-4">
+            <p className="inline-block bg-white px-4 py-2 text-black rounded-md">
+              {journeyData?.covered_distance &&
+                (journeyData.covered_distance / 1000).toFixed(2)}{" "}
+              km
+            </p>
+            <p className="inline-block bg-white px-4 py-2 text-black rounded-md">
+              {journeyData?.duration && (journeyData.duration / 60).toFixed(0)}{" "}
+              min
+            </p>
+          </div>
         </div>
         <div className="mt-12">
           <iframe
