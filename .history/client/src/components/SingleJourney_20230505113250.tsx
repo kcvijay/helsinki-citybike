@@ -127,7 +127,7 @@ const SingleJourney = () => {
   return (
     <>
       <div className="wrapper">
-        <div className="text-white md:flex transition-all duration-300">
+        <div className="text-white md:flex">
           <div className="w-full">
             <p className="text-lg">From</p>
             <h2 className="text-xl md:text-3xl text-white font-bold uppercase mb-8">

@@ -186,7 +186,7 @@ const AllJourneys = () => {
             <th>Return Station (id)</th>
             <th>Return Time</th>
             <th>Distance(km)</th>
-            <th>Duration(min, sec)</th>
+            <th>Duration(min)</th>
           </tr>
         </thead>
         <tbody>

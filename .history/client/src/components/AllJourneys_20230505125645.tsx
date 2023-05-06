@@ -186,7 +186,7 @@ const AllJourneys = () => {
             <th>Return Station (id)</th>
             <th>Return Time</th>
             <th>Distance(km)</th>
-            <th>Duration(min, sec)</th>
+            <th>Duration(min)</th>
           </tr>
         </thead>
         <tbody>
@@ -202,7 +202,7 @@ const AllJourneys = () => {
                 return_station_id={obj.return_station_id}
                 return_time={obj.return}
                 distance={Math.round((obj.covered_distance / 1000) * 100) / 100}
-                duration={obj.duration}
+                duration={Math.floor(obj.duration / 60)}
               />
             );
           })}

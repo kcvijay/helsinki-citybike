@@ -53,12 +53,6 @@ const getData = asyncHandler(
 
     const data = await collection.findOne(filter).exec();
 
-    if (!data || data === undefined) {
-      res.status(404);
-      console.log("Data not found.");
-      return;
-    }
-
     res.status(200).json(data);
   }
 );

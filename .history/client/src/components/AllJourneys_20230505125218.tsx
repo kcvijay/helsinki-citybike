@@ -113,30 +113,16 @@ const AllJourneys = () => {
   return (
     <div className="wrapper">
       <ToastContainer autoClose={3000} />
-      <div className="flex flex-col md:flex-row md:justify-between md:items-bottom gap-4 mb-8">
+      <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4 mb-8">
         <h2 className="text-3xl text-white font-bold">All Journeys</h2>
-        <form className="flex gap-4">
+        <form>
           <div className="w-full">
-            <label className="block text-white" htmlFor="dateFrom">
-              From
-            </label>
-            <input
-              className="p-2 rounded-md"
-              type="date"
-              name="dateFrom"
-              id="dateFrom"
-            />
+            <label htmlFor="dateFrom">From</label>
+            <input type="date" name="dateFrom" id="dateFrom" />
           </div>
           <div className="w-full">
-            <label className="block text-white" htmlFor="dateTo">
-              To
-            </label>
-            <input
-              className="p-2 rounded-md"
-              type="date"
-              name="dateTo"
-              id="dateTo"
-            />
+            <label htmlFor="dateTo">To</label>
+            <input type="date" name="dateTo" id="dateTo" />
           </div>
         </form>
 
@@ -186,7 +172,7 @@ const AllJourneys = () => {
             <th>Return Station (id)</th>
             <th>Return Time</th>
             <th>Distance(km)</th>
-            <th>Duration(min, sec)</th>
+            <th>Duration(min)</th>
           </tr>
         </thead>
         <tbody>
@@ -202,7 +188,7 @@ const AllJourneys = () => {
                 return_station_id={obj.return_station_id}
                 return_time={obj.return}
                 distance={Math.round((obj.covered_distance / 1000) * 100) / 100}
-                duration={obj.duration}
+                duration={Math.floor(obj.duration / 60)}
               />
             );
           })}

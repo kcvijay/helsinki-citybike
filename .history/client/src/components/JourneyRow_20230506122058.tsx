@@ -30,13 +30,7 @@ const JourneyRow = ({
     return formattedDate;
   };
 
-  // Calculating minutes and seconds.
-  const convertToMinAndSec = (totalSeconds: number) => {
-    const minutes = Math.floor(totalSeconds / 60);
-    const seconds = totalSeconds % 60;
-    const minAndSec = `${minutes} min, ${seconds} sec`;
-    return minAndSec;
-  };
+  console.log(convertToMinAndSec(500));
 
   return (
     <tr>
@@ -51,9 +45,9 @@ const JourneyRow = ({
       </td>
       <td data-cell="Return Time">{convertToLocaleString(return_time)}</td>
       <td data-cell="Distance (km)" className="text-center">
-        {distance}
+        {Number(distance)}
       </td>
-      <td data-cell="Duration (min, sec)" className="text-center">
+      <td data-cell="Duration (min)" className="text-center">
         {convertToMinAndSec(duration)}
       </td>
     </tr>

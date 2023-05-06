@@ -102,6 +102,14 @@ const AllJourneys = () => {
   };
   ////
 
+  // Calculating minutes and seconds.
+  const convertToMinAndSec = (totalSeconds: number) => {
+    const minutes = Math.round(totalSeconds / 60);
+    const seconds = totalSeconds % 60;
+    const minAndSec = `${minutes} min ${seconds} sec`;
+    return minAndSec;
+  };
+
   if (loading) {
     return (
       <div className="flex py-[50px] justify-center items-center">
@@ -186,7 +194,7 @@ const AllJourneys = () => {
             <th>Return Station (id)</th>
             <th>Return Time</th>
             <th>Distance(km)</th>
-            <th>Duration(min, sec)</th>
+            <th>Duration(min)</th>
           </tr>
         </thead>
         <tbody>
@@ -202,7 +210,8 @@ const AllJourneys = () => {
                 return_station_id={obj.return_station_id}
                 return_time={obj.return}
                 distance={Math.round((obj.covered_distance / 1000) * 100) / 100}
-                duration={obj.duration}
+                duration={Math.floor(obj.duration / 60)}
+                convertToMinAndSec={convertToMinAndSec()}
               />
             );
           })}
