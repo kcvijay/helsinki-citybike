@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import TablePagination from "@mui/material/TablePagination";
+// import Pagination from "@mui/material/Pagination";
 import axios from "axios";
 import loader from "../assets/loading.gif";
 import JourneyRow from "./JourneyRow";
@@ -59,7 +60,7 @@ const AllJourneys = () => {
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     setRowsPerPage(parseInt(e.target.value));
-    setPage(0);
+    setPage(1);
   };
 
   // On input change.
@@ -120,11 +121,9 @@ const AllJourneys = () => {
         <thead className=" border-collapse bg-orange-600 text-white">
           <tr>
             <th>Depart. Station (id)</th>
-            <th>Depart. Time</th>
             <th>Return Station (id)</th>
-            <th>Return Time</th>
             <th>Distance(km)</th>
-            <th className="text-center">Duration</th>
+            <th>Duration(min, sec)</th>
           </tr>
         </thead>
         <tbody>
@@ -135,10 +134,8 @@ const AllJourneys = () => {
                 _id={obj._id}
                 dep_station={obj.departure_station_name}
                 dep_station_id={obj.departure_station_id}
-                dep_time={obj.departure}
                 return_station={obj.return_station_name}
                 return_station_id={obj.return_station_id}
-                return_time={obj.return}
                 distance={Math.round((obj.covered_distance / 1000) * 100) / 100}
                 duration={obj.duration}
               />
@@ -146,7 +143,7 @@ const AllJourneys = () => {
           })}
         </tbody>
       </table>
-      <div className="bg-white text-black w-full">
+      <div className="bg-white text-black w-full flex justify-center py-4">
         <TablePagination
           rowsPerPageOptions={[50, 100, 150, 200]}
           component="div"

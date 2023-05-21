@@ -150,6 +150,7 @@ const AllJourneys = () => {
         <TablePagination
           rowsPerPageOptions={[50, 100, 150, 200]}
           component="div"
+          className="text-sm"
           count={totalRows}
           page={page}
           onPageChange={handleChangePage}

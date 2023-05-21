@@ -1,8 +1,7 @@
 th,
 td {
   text-align: left;
-  min-width: 200px;
-  padding: 0.5rem;
+  width: min(200px, 100px);
 }
 
 th {

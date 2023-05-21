@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import TablePagination from "@mui/material/TablePagination";
+// import Pagination from "@mui/material/Pagination";
 import axios from "axios";
 import loader from "../assets/loading.gif";
 import JourneyRow from "./JourneyRow";
@@ -59,7 +60,7 @@ const AllJourneys = () => {
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     setRowsPerPage(parseInt(e.target.value));
-    setPage(0);
+    setPage(1);
   };
 
   // On input change.
@@ -146,7 +147,7 @@ const AllJourneys = () => {
           })}
         </tbody>
       </table>
-      <div className="bg-white text-black w-full">
+      <div className="bg-white text-black w-full flex justify-center py-4">
         <TablePagination
           rowsPerPageOptions={[50, 100, 150, 200]}
           component="div"

@@ -53,7 +53,7 @@ const JourneyRow = ({
       <td data-cell="Distance (km)" className="text-center">
         {distance}
       </td>
-      <td data-cell="Duration" className="text-center">
+      <td data-cell="Duration (min, sec)" className="text-center">
         {convertToMinAndSec(duration)}
       </td>
     </tr>

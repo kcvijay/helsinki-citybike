@@ -45,15 +45,13 @@ const JourneyRow = ({
           {dep_station} ({dep_station_id})
         </Link>
       </td>
-      <td data-cell="Depart. Time">{convertToLocaleString(dep_time)}</td>
       <td data-cell="Return Station (id)">
         {return_station} ({return_station_id})
       </td>
-      <td data-cell="Return Time">{convertToLocaleString(return_time)}</td>
       <td data-cell="Distance (km)" className="text-center">
         {distance}
       </td>
-      <td data-cell="Duration" className="text-center">
+      <td data-cell="Duration (min, sec)" className="text-center">
         {convertToMinAndSec(duration)}
       </td>
     </tr>
