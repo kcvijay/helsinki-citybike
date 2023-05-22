@@ -5,6 +5,7 @@ table {
 th,
 td {
   text-align: left;
+  max-width: 200px;
   padding: 0.5rem;
 }
 

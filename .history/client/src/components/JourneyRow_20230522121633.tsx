@@ -31,6 +31,12 @@ const JourneyRow = ({
   };
 
   // Calculating minutes and seconds.
+  const convertToMinAndSec = (totalSeconds: number) => {
+    const minutes = Math.floor(totalSeconds / 60);
+    const seconds = totalSeconds % 60;
+    const minAndSec = `${minutes} min, ${seconds} sec`;
+    return minAndSec;
+  };
 
   return (
     <tr>
@@ -45,10 +51,10 @@ const JourneyRow = ({
       </td>
       <td data-cell="Return Time">{convertToLocaleString(return_time)}</td>
       <td data-cell="Distance (km)" className="text-center">
-        {distance} km
+        {distance}
       </td>
       <td data-cell="Duration" className="text-center">
-        {Math.round(duration / 60)} min
+        {Math.ceil(duration)}
       </td>
     </tr>
   );

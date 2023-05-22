@@ -116,13 +116,6 @@ const SingleJourney = () => {
     return formattedDate;
   };
 
-  const convertToMinAndSec = (totalSeconds: number) => {
-    const minutes = Math.floor(totalSeconds / 60);
-    const seconds = totalSeconds % 60;
-    const minAndSec = `${minutes} min, ${seconds} sec`;
-    return minAndSec;
-  };
-
   if (loading) {
     return (
       <div className="flex py-[50px] justify-center items-center">
@@ -134,7 +127,7 @@ const SingleJourney = () => {
   return (
     <>
       <div className="wrapper">
-        <div className="text-white flex flex-col md:flex-row">
+        <div className="text-white md:flex transition-all duration-300">
           <div className="w-full">
             <p className="text-lg">From</p>
             <h2 className="text-xl md:text-3xl text-white font-bold uppercase mb-8">
@@ -156,23 +149,23 @@ const SingleJourney = () => {
             </h2>
           </div>
         </div>
-        <div className="flex items-center gap-4">
-          <p className="flex justify-between items-center bg-white px-4 py-2 rounded-md">
-            <p className="material-icons text-slate-500 mr-4">
+        <div className="text-xl flex items-center gap-4">
+          <p className="inline-block bg-white px-4 py-2 text-black rounded-md">
+            <span className="material-icons align-text-top text-slate-500 mr-4">
               directions_bike
-            </p>
-            <p>
+            </span>
+            <span>
               {journeyData?.covered_distance &&
                 (journeyData.covered_distance / 1000).toFixed(2)}{" "}
               km
-            </p>
+            </span>
           </p>
-          <p className="flex justify-center items-center bg-white px-4 py-2 rounded-md">
-            <p className="material-icons text-slate-500 mr-4">schedule</p>
-            <p>
-              {journeyData?.duration &&
-                convertToMinAndSec(journeyData?.duration)}
-            </p>
+          <p className="inline-block bg-white px-4 py-2 text-black rounded-md">
+            <span className="material-icons align-text text-slate-500 mr-4">
+              schedule
+            </span>
+            {journeyData?.duration && (journeyData.duration / 60).toFixed(0)}{" "}
+            min
           </p>
         </div>
         <div className="mt-12">

@@ -172,6 +172,7 @@ const SingleJourney = () => {
             <p>
               {journeyData?.duration &&
                 convertToMinAndSec(journeyData?.duration)}
+              min
             </p>
           </p>
         </div>

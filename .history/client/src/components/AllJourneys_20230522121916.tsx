@@ -123,7 +123,7 @@ const AllJourneys = () => {
             <th>Depart. Time</th>
             <th>Return Station (id)</th>
             <th>Return Time</th>
-            <th className="text-center">Distance</th>
+            <th>Distance</th>
             <th className="text-center">Duration</th>
           </tr>
         </thead>

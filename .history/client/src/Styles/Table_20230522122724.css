@@ -1,10 +1,11 @@
 table {
-  table-layout: auto;
+  max-width: 100%;
 }
 
 th,
 td {
   text-align: left;
+  min-width: 200px;
   padding: 0.5rem;
 }
 
