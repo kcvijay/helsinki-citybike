@@ -5,7 +5,7 @@ import Footer from "../components/Footer";
 
 const Layout = () => {
   const handleScrollToTop = () => {
-    window.scrollTo(0, 0);
+    window.scrollTo(0, window.screenTop);
   };
   const [showScrollButton, setShowScrollButton] = useState(false);
 
@@ -28,19 +28,16 @@ const Layout = () => {
       <Header />
       <Main />
       <Footer />
-
-      <div
-        className={`fixed bottom-8 right-8 bg-black w-[48px] h-[48px] rounded-full cursor-pointer ${
-          !showScrollButton
-            ? "opacity-0 transition-all duration-1000"
-            : "opacity-1 transition-all duration-1000"
-        }`}
-        onClick={handleScrollToTop}
-      >
-        <span className="material-icons text-white text-[48px]">
-          arrow_circle_up
-        </span>
-      </div>
+      {showScrollButton && (
+        <div
+          className="fixed bottom-8 right-8 bg-black w-[48px] h-[48px] rounded-full cursor-pointer"
+          onClick={handleScrollToTop}
+        >
+          <span className="material-icons text-white text-[48px]">
+            arrow_circle_up
+          </span>
+        </div>
+      )}
     </div>
   );
 };

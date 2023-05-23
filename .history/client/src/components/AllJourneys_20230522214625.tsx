@@ -47,10 +47,9 @@ const AllJourneys = () => {
         );
         setData(response.data);
         setLoading(false);
-      } catch (error: any) {
-        toast.error("Something went wrong. " + error.message);
+      } catch (error) {
+        console.log(error);
       }
-      window.scrollTo(0, window.screenTop);
     };
     handleFetchData();
   }, [rowsPerPage, page]);

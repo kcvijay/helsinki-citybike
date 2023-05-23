@@ -156,8 +156,8 @@ const SingleJourney = () => {
             </h2>
           </div>
         </div>
-        <div className="flex justify-start items-center gap-4">
-          <p className="flex justify-center items-center bg-white px-4 py-2 rounded-md">
+        <div className="flex items-center gap-4">
+          <p className="flex w-full justify-between items-center bg-white px-4 py-2 rounded-md">
             <p className="material-icons text-slate-500 mr-4">
               directions_bike
             </p>

@@ -32,8 +32,8 @@ const Layout = () => {
       <div
         className={`fixed bottom-8 right-8 bg-black w-[48px] h-[48px] rounded-full cursor-pointer ${
           !showScrollButton
-            ? "opacity-0 transition-all duration-1000"
-            : "opacity-1 transition-all duration-1000"
+            ? "opacity-0 transition-all duration-500"
+            : "opacity-1 transition-all duration-500"
         }`}
         onClick={handleScrollToTop}
       >

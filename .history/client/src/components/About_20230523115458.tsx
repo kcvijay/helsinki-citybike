@@ -10,14 +10,14 @@ const About = () => {
         created following the guidelines of IT consulting company Solita.
       </p>
       <p className="leading-10 text-xl mb-4">
-        In this application, you can view and sort all the journey and
+        In this application, user can view and sort all the journey and
         bicycle-station details on the given period of time.
       </p>
 
       <p className="leading-10 text-xl mb-4">
         Few additional features are also on the way.
       </p>
-      <p className="text-xl mb-4">Happy browsing.</p>
+      <p className="lext-xl mb-4">Happy browsing 😊</p>
     </div>
   );
 };

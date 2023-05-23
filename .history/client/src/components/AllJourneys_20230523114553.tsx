@@ -43,14 +43,13 @@ const AllJourneys = () => {
       try {
         const skip = (page + 1 - 1) * rowsPerPage;
         const response = await axios.get(
-          `http://localhost:4000/api/journeys?limit=${rowsPerPage}&offset=${skip}`
+          `http://localhost:4000/api/journeys?limit=${rowsPerPage}&offsee=${skip}`
         );
         setData(response.data);
         setLoading(false);
       } catch (error: any) {
         toast.error("Something went wrong. " + error.message);
       }
-      window.scrollTo(0, window.screenTop);
     };
     handleFetchData();
   }, [rowsPerPage, page]);

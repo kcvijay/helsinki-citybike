@@ -50,7 +50,6 @@ const AllJourneys = () => {
       } catch (error: any) {
         toast.error("Something went wrong. " + error.message);
       }
-      window.scrollTo(0, window.screenTop);
     };
     handleFetchData();
   }, [rowsPerPage, page]);
