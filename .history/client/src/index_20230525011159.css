@@ -1,0 +1,63 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  * {
+    scroll-behavior: smooth;
+  }
+  .active {
+    @apply bg-orange-300;
+  }
+
+  .wrapper {
+    @apply max-w-[1400px] mx-auto p-[48px];
+  }
+
+  .page-header {
+    @apply text-3xl text-white font-bold;
+  }
+
+  .btn-primary {
+    @apply inline-block bg-orange-400 text-white px-10 py-4 rounded-md border-2 border-orange-400 hover:border-white transition-all duration-300;
+  }
+
+  .btn-secondary {
+    @apply inline-block bg-teal-700 text-white px-10 py-4 rounded-md border-2 border-teal-700 hover:border-white transition-all duration-300;
+  }
+
+  /*Form*/
+
+  form .input-box {
+    margin-bottom: 2rem;
+  }
+
+  label,
+  input,
+  textarea {
+    display: block;
+    font-family: inherit;
+    max-width: 100%;
+    color: #fff;
+    margin-top: 1rem;
+    transition: all 0.5s ease;
+  }
+
+  select {
+    display: block;
+    margin-top: 1rem;
+  }
+
+  input,
+  textarea,
+  select {
+    padding: 1rem;
+    border-radius: 7px;
+    width: min(50ch, 95%);
+  }
+
+  input:focus,
+  textarea:focus {
+    outline: 3px solid teal;
+  }
+}
