@@ -62,16 +62,12 @@ const getData = asyncHandler(
     // Counts the number of journeys started from:
     if (collectionName === "stations") {
       const stationId = req.params.stationid;
-      const totalDepartureJourneys = await Journey.countDocuments({
+      const totalJourneys = await Journey.countDocuments({
         departure_station_id: stationId,
-      });
-      const totalReturnJourneys = await Journey.countDocuments({
-        return_station_id: stationId,
       });
       const responseData = {
         ...data.toObject(),
-        total_departure_journeys: totalDepartureJourneys,
-        total_return_journeys: totalReturnJourneys,
+        total_journeys: totalJourneys,
       };
       res.status(200).json(responseData);
     } else {

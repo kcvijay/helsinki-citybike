@@ -3,11 +3,7 @@ import { Request, Response } from "express";
 
 const router = express.Router();
 
-const {
-  getAllData,
-  getData,
-  getTopReturnStations,
-} = require("../controllers/journeyController");
+const { getAllData, getData } = require("../controllers/journeyController");
 
 // routes for stations collection
 
@@ -17,10 +13,5 @@ router
 router
   .route("/:stationid")
   .get((req: Request, res: Response) => getData(req, res, "stations"));
-router
-  .route("/:stationid/top-return-stations")
-  .get((req: Request, res: Response) =>
-    getTopReturnStations(req, res, "stations")
-  );
 
 module.exports = router;

@@ -173,22 +173,6 @@ const SingleStation = () => {
                 })}
             </ul>
           </div>
-          <div>
-            <h3 className="text-lg font-bold mb-3">Top 5 Departures</h3>
-            <ul>
-              {returnStationData &&
-                returnStationData.map((data, index) => {
-                  return (
-                    <TopRankList
-                      index={index + 1}
-                      count={data.count}
-                      station_id={data.return_station_id}
-                      station_name={data.return_station_name}
-                    />
-                  );
-                })}
-            </ul>
-          </div>
         </div>
 
         <div className="mt-6">

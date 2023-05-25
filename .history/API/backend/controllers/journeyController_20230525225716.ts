@@ -70,7 +70,7 @@ const getData = asyncHandler(
       });
       const responseData = {
         ...data.toObject(),
-        total_departure_journeys: totalDepartureJourneys,
+        total_departure_journeys: totalReturnJourneys,
         total_return_journeys: totalReturnJourneys,
       };
       res.status(200).json(responseData);

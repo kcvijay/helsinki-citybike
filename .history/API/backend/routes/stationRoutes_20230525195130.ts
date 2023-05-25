@@ -17,10 +17,5 @@ router
 router
   .route("/:stationid")
   .get((req: Request, res: Response) => getData(req, res, "stations"));
-router
-  .route("/:stationid/top-return-stations")
-  .get((req: Request, res: Response) =>
-    getTopReturnStations(req, res, "stations")
-  );
 
 module.exports = router;

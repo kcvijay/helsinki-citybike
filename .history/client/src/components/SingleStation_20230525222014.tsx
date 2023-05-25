@@ -3,6 +3,8 @@ import axios from "axios";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import loader from "../assets/loading.gif";
 
+import Tab from "react-bootstrap/Tab";
+import Tabs from "react-bootstrap/Tabs";
 import TopRankList from "./TopRankList";
 
 const SingleStation = () => {
@@ -20,8 +22,6 @@ const SingleStation = () => {
     station_id: string;
     x: string;
     y: string;
-    total_departure_journeys: number;
-    total_return_journeys: number;
   }
 
   interface TopReturnStations {
@@ -123,27 +123,18 @@ const SingleStation = () => {
 
             <div className="mb-6">
               <h3 className="text-md">Capacity</h3>
-              <p className="text-md text-slate-500">
-                {data?.capacity} bicycles
-              </p>
+              <p className="text-md text-slate-500">{data?.capacity} bikes</p>
             </div>
 
             <div className="mb-6">
-              <h3 className="text-md">Total Departure Journeys</h3>
+              <h3 className="text-md">Coordinates</h3>
               <p className="text-md text-slate-500">
-                {data?.total_departure_journeys}
-              </p>
-              <p className="text-md text-slate-500"></p>
-            </div>
-            <div className="mb-6">
-              <h3 className="text-md">Total Return Journeys</h3>
-              <p className="text-md text-slate-500">
-                {data?.total_return_journeys}
+                X: {data?.x}, Y: {data?.y}
               </p>
               <p className="text-md text-slate-500"></p>
             </div>
           </div>
-          <div className="h-[350px] md:h-full md:auto relative">
+          <div className="h-[350px] md:auto relative transition-all duration-300">
             <iframe
               className="w-full h-full rounded-md border-4 border-slate-200"
               title={data?.name}
@@ -158,23 +149,7 @@ const SingleStation = () => {
             </Link>
           </div>
           <div>
-            <h3 className="text-lg font-bold mb-3">Top 5 Destinations</h3>
-            <ul>
-              {returnStationData &&
-                returnStationData.map((data, index) => {
-                  return (
-                    <TopRankList
-                      index={index + 1}
-                      count={data.count}
-                      station_id={data.return_station_id}
-                      station_name={data.return_station_name}
-                    />
-                  );
-                })}
-            </ul>
-          </div>
-          <div>
-            <h3 className="text-lg font-bold mb-3">Top 5 Departures</h3>
+            <h2>Top 5 Return Stations</h2>
             <ul>
               {returnStationData &&
                 returnStationData.map((data, index) => {

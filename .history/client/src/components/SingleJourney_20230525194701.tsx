@@ -1,10 +1,7 @@
-import React, { useEffect, useState } from "react";
 import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import loader from "../assets/loading.gif";
-
-import Tab from "react-bootstrap/Tab";
-import Tabs from "react-bootstrap/Tabs";
 
 const SingleJourney = () => {
   interface journeyData {
@@ -129,7 +126,7 @@ const SingleJourney = () => {
   if (loading) {
     return (
       <div className="flex py-[50px] justify-center items-center">
-        <img className="rounded-full" src={loader} alt="Loading icon" />
+        <img src={loader} alt="Loading icon" />
       </div>
     );
   }

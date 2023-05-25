@@ -123,9 +123,7 @@ const SingleStation = () => {
 
             <div className="mb-6">
               <h3 className="text-md">Capacity</h3>
-              <p className="text-md text-slate-500">
-                {data?.capacity} bicycles
-              </p>
+              <p className="text-md text-slate-500">{data?.capacity} bikes</p>
             </div>
 
             <div className="mb-6">
@@ -159,22 +157,6 @@ const SingleStation = () => {
           </div>
           <div>
             <h3 className="text-lg font-bold mb-3">Top 5 Destinations</h3>
-            <ul>
-              {returnStationData &&
-                returnStationData.map((data, index) => {
-                  return (
-                    <TopRankList
-                      index={index + 1}
-                      count={data.count}
-                      station_id={data.return_station_id}
-                      station_name={data.return_station_name}
-                    />
-                  );
-                })}
-            </ul>
-          </div>
-          <div>
-            <h3 className="text-lg font-bold mb-3">Top 5 Departures</h3>
             <ul>
               {returnStationData &&
                 returnStationData.map((data, index) => {
