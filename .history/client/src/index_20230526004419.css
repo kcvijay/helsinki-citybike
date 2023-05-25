@@ -10,6 +10,10 @@
     @apply bg-orange-300;
   }
 
+  .wrapper {
+    @apply max-w-[1400px] mx-auto p-[48px];
+  }
+
   .page-header {
     @apply text-3xl text-white font-bold;
   }
@@ -25,7 +29,6 @@
   .wrapper {
     width: min(1400px, 95%);
     margin-inline: auto;
-    padding: 48px 0;
   }
 
   a:hover {

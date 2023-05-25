@@ -96,7 +96,7 @@ const SingleStation = () => {
           {data?.Nimi} / {data?.Namn}
         </p>
 
-        <div className="bg-white p-5 rounded-md shadow-sm shadow-slate-100 grid grid-cols-1 md:grid-cols-2 gap-8 transition-all duration-300">
+        <div className="bg-white p-5 rounded-md shadow-sm shadow-slate-100 grid grid-cols-1 md:grid-cols-2 gap-4 transition-all duration-300">
           <div>
             <div className="mb-6">
               <h3 className="text-md">Address</h3>
@@ -159,7 +159,7 @@ const SingleStation = () => {
             <h3 className="text-lg font-bold mb-3">
               Top 5 Destination Stations
             </h3>
-            <ul className="shadow-md">
+            <ul>
               {returnStationData &&
                 returnStationData.map((data, index) => {
                   return (
@@ -177,7 +177,7 @@ const SingleStation = () => {
             <h3 className="text-lg font-bold mb-3">
               Top 5 Departure Stations{" "}
             </h3>
-            <ul className="shadow-md">
+            <ul>
               {departureStationData &&
                 departureStationData.map((data, index) => {
                   return (

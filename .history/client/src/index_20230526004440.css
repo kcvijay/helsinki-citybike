@@ -25,7 +25,6 @@
   .wrapper {
     width: min(1400px, 95%);
     margin-inline: auto;
-    padding: 48px 0;
   }
 
   a:hover {

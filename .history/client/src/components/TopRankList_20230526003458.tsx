@@ -14,7 +14,7 @@ const TopRankList = ({
   station_name,
 }: TopRankProps) => {
   return (
-    <li className="text-sm md:text-base p-2 border-b min-w-1/2 border-slate-200">
+    <li className="p-2 border-b w-max border-slate-200">
       {index}. {station_name} [{station_id}]{" "}
       <span className="text-sm text-orange-500">{count} times</span>
     </li>
