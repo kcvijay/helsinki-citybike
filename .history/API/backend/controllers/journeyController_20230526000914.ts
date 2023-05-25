@@ -154,5 +154,6 @@ const getTopStations = asyncHandler(async (req: Request, res: Response) => {
 module.exports = {
   getAllData,
   getData,
-  getTopStations,
+  getTopReturnStations,
+  getTopDepartureStations,
 };

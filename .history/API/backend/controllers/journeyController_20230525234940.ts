@@ -80,79 +80,87 @@ const getData = asyncHandler(
   }
 );
 
-const getTopStations = asyncHandler(async (req: Request, res: Response) => {
-  const stationId = req.params.stationid;
+const getTopReturnStations = asyncHandler(
+  async (req: Request, res: Response) => {
+    const stationId = req.params.stationid;
 
-  try {
-    const result = await Journey.aggregate([
-      {
-        $facet: {
-          topDepartureStations: [
-            { $match: { return_station_id: stationId } },
-            { $group: { _id: "$departure_station_id", count: { $sum: 1 } } },
-            { $sort: { count: -1 } },
-            { $limit: 5 },
-            {
-              $lookup: {
-                from: "stations",
-                localField: "_id",
-                foreignField: "station_id",
-                as: "station_details",
-              },
-            },
-            {
-              $project: {
-                _id: 0,
-                station_id: "$_id",
-                count: 1,
-                station_name: { $arrayElemAt: ["$station_details.name", 0] },
-                station_address: {
-                  $arrayElemAt: ["$station_details.address", 0],
-                },
-              },
-            },
-          ],
-          topReturnStations: [
-            { $match: { departure_station_id: stationId } },
-            { $group: { _id: "$return_station_id", count: { $sum: 1 } } },
-            { $sort: { count: -1 } },
-            { $limit: 5 },
-            {
-              $lookup: {
-                from: "stations",
-                localField: "_id",
-                foreignField: "station_id",
-                as: "station_details",
-              },
-            },
-            {
-              $project: {
-                _id: 0,
-                station_id: "$_id",
-                count: 1,
-                station_name: { $arrayElemAt: ["$station_details.name", 0] },
-                station_address: {
-                  $arrayElemAt: ["$station_details.address", 0],
-                },
-              },
-            },
-          ],
+    try {
+      const result = await Journey.aggregate([
+        { $match: { departure_station_id: stationId } },
+        { $group: { _id: "$return_station_id", count: { $sum: 1 } } },
+        { $sort: { count: -1 } },
+        { $limit: 5 },
+        {
+          $lookup: {
+            from: "stations",
+            localField: "_id",
+            foreignField: "station_id",
+            as: "station_details",
+          },
         },
-      },
-    ]).exec();
+        {
+          $project: {
+            _id: 0,
+            return_station_id: "$_id",
+            count: 1,
+            return_station_name: { $arrayElemAt: ["$station_details.name", 0] },
+            return_station_address: {
+              $arrayElemAt: ["$station_details.address", 0],
+            },
+          },
+        },
+      ]).exec();
 
-    const topDepartureStations = result[0].topDepartureStations;
-    const topReturnStations = result[0].topReturnStations;
-
-    res.status(200).json({ topDepartureStations, topReturnStations });
-  } catch (error) {
-    console.error("Error retrieving top stations:", error);
-    res.status(500).send({ error: 500, message: "Internal Server Error" });
+      res.status(200).json(result);
+    } catch (error) {
+      console.error("Error retrieving top return stations:", error);
+      res.status(500).send({ error: 500, message: "Internal Server Error" });
+    }
   }
-});
+);
+
+const getTopDepartureStations = asyncHandler(
+  async (req: Request, res: Response) => {
+    const stationId = req.params.stationid;
+
+    try {
+      const result = await Journey.aggregate([
+        { $match: { return_station_id: stationId } },
+        { $group: { _id: "$departure_station_id", count: { $sum: 1 } } },
+        { $sort: { count: -1 } },
+        { $limit: 5 },
+        {
+          $lookup: {
+            from: "stations",
+            localField: "_id",
+            foreignField: "station_id",
+            as: "station_details",
+          },
+        },
+        {
+          $project: {
+            _id: 0,
+            return_station_id: "$_id",
+            count: 1,
+            return_station_name: { $arrayElemAt: ["$station_details.name", 0] },
+            return_station_address: {
+              $arrayElemAt: ["$station_details.address", 0],
+            },
+          },
+        },
+      ]).exec();
+
+      res.status(200).json(result);
+    } catch (error) {
+      console.error("Error retrieving top return stations:", error);
+      res.status(500).send({ error: 500, message: "Internal Server Error" });
+    }
+  }
+);
 
 module.exports = {
   getAllData,
   getData,
-  getTopStations,
+  getTopReturnStations,
+  getTopDepartureStations,
 };

@@ -156,9 +156,12 @@ const SingleStation = () => {
             </Link>
           </div>
           <div>
-            <h3 className="text-lg font-bold mb-3">Top 5 Destinations [TO]</h3>
+            <h3 className="text-lg font-bold mb-3">Top 5 Destinations</h3>
             <ul>
-              {returnStationData &&
+              {loading ? (
+                <img src={loader} alt="loader" />
+              ) : (
+                returnStationData &&
                 returnStationData.map((data, index) => {
                   return (
                     <TopRankList
@@ -168,11 +171,12 @@ const SingleStation = () => {
                       station_name={data.station_name}
                     />
                   );
-                })}
+                })
+              )}
             </ul>
           </div>
           <div>
-            <h3 className="text-lg font-bold mb-3">Top 5 Departures [FROM]</h3>
+            <h3 className="text-lg font-bold mb-3">Top 5 Departures</h3>
             <ul>
               {departureStationData &&
                 departureStationData.map((data, index) => {

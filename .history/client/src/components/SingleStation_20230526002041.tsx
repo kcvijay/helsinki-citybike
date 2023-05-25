@@ -43,7 +43,12 @@ const SingleStation = () => {
   useEffect(() => {
     window.scrollTo(0, window.screenTop);
     handleFetchData();
-    handleTopStations();
+  }, []);
+
+  useEffect(() => {
+    if (data) {
+      handleTopStations();
+    }
   }, []);
 
   const handleFetchData = async () => {
@@ -156,7 +161,7 @@ const SingleStation = () => {
             </Link>
           </div>
           <div>
-            <h3 className="text-lg font-bold mb-3">Top 5 Destinations [TO]</h3>
+            <h3 className="text-lg font-bold mb-3">Top 5 Destinations</h3>
             <ul>
               {returnStationData &&
                 returnStationData.map((data, index) => {
@@ -172,7 +177,7 @@ const SingleStation = () => {
             </ul>
           </div>
           <div>
-            <h3 className="text-lg font-bold mb-3">Top 5 Departures [FROM]</h3>
+            <h3 className="text-lg font-bold mb-3">Top 5 Departures</h3>
             <ul>
               {departureStationData &&
                 departureStationData.map((data, index) => {

@@ -6,7 +6,8 @@ const router = express.Router();
 const {
   getAllData,
   getData,
-  getTopStations,
+  getTopReturnStations,
+  getTopDepartureStations,
 } = require("../controllers/journeyController");
 
 // routes for stations collection
@@ -18,7 +19,14 @@ router
   .route("/:stationid")
   .get((req: Request, res: Response) => getData(req, res, "stations"));
 router
-  .route("/:stationid/top-stations")
-  .get((req: Request, res: Response) => getTopStations(req, res, "stations"));
+  .route("/:stationid/top-return-stations")
+  .get((req: Request, res: Response) =>
+    getTopReturnStations(req, res, "stations")
+  );
+router
+  .route("/:stationid/top-departure-stations")
+  .get((req: Request, res: Response) =>
+    getTopDepartureStations(req, res, "stations")
+  );
 
 module.exports = router;

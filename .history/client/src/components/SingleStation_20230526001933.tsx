@@ -46,6 +46,12 @@ const SingleStation = () => {
     handleTopStations();
   }, []);
 
+  // useEffect(() => {
+  //   if (data) {
+  //     handleTopStations();
+  //   }
+  // }, [data]);
+
   const handleFetchData = async () => {
     setLoading(true);
     try {
@@ -156,7 +162,7 @@ const SingleStation = () => {
             </Link>
           </div>
           <div>
-            <h3 className="text-lg font-bold mb-3">Top 5 Destinations [TO]</h3>
+            <h3 className="text-lg font-bold mb-3">Top 5 Destinations</h3>
             <ul>
               {returnStationData &&
                 returnStationData.map((data, index) => {
@@ -172,7 +178,7 @@ const SingleStation = () => {
             </ul>
           </div>
           <div>
-            <h3 className="text-lg font-bold mb-3">Top 5 Departures [FROM]</h3>
+            <h3 className="text-lg font-bold mb-3">Top 5 Departures</h3>
             <ul>
               {departureStationData &&
                 departureStationData.map((data, index) => {

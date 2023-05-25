@@ -24,27 +24,39 @@ const SingleStation = () => {
     total_return_journeys: number;
   }
 
-  interface TopStations {
+  interface TopReturnStations {
     count: number;
-    station_id: string;
-    station_name: string;
-    station_address: string;
+    return_station_id: string;
+    return_station_name: string;
+    return_station_address: string;
   }
-
+  interface TopReturnStations {
+    count: number;
+    return_station_id: string;
+    return_station_name: string;
+    return_station_address: string;
+  }
   const params = useParams();
   const navigate = useNavigate();
   const [data, setData] = useState<singleStationData>();
-  const [returnStationData, setReturnStationData] = useState<TopStations[]>([]);
+  const [returnStationData, setReturnStationData] = useState<
+    TopReturnStations[]
+  >([]);
   const [departureStationData, setDepartureStationData] = useState<
-    TopStations[]
+    TopReturnStations[]
   >([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, window.screenTop);
     handleFetchData();
-    handleTopStations();
   }, []);
+
+  useEffect(() => {
+    if (data) {
+      handleTopReturnStations();
+    }
+  }, [data]);
 
   const handleFetchData = async () => {
     setLoading(true);
@@ -59,14 +71,26 @@ const SingleStation = () => {
     setLoading(false);
   };
 
-  const handleTopStations = async () => {
+  const handleTopReturnStations = async () => {
     setLoading(true);
     try {
       const res = await axios.get(
-        `http://localhost:4000/api/stations/${params.stationid}/top-stations`
+        `http://localhost:4000/api/stations/${params.stationid}/top-return-stations`
       );
-      setReturnStationData(res.data.topReturnStations);
-      setDepartureStationData(res.data.topDepartureStations);
+      setReturnStationData(res.data);
+    } catch (error: any) {
+      alert(error.message);
+    }
+    setLoading(false);
+  };
+
+  const handleTopDepartureStations = async () => {
+    setLoading(true);
+    try {
+      const res = await axios.get(
+        `http://localhost:4000/api/stations/${params.stationid}/top-departure-stations`
+      );
+      setReturnStationData(res.data);
     } catch (error: any) {
       alert(error.message);
     }
@@ -129,14 +153,14 @@ const SingleStation = () => {
             <div className="mb-6">
               <h3 className="text-md">Total Departure Journeys</h3>
               <p className="text-md text-slate-500">
-                {data?.total_departure_journeys.toLocaleString("fi-FI")}
+                {data?.total_departure_journeys}
               </p>
               <p className="text-md text-slate-500"></p>
             </div>
             <div className="mb-6">
               <h3 className="text-md">Total Return Journeys</h3>
               <p className="text-md text-slate-500">
-                {data?.total_return_journeys.toLocaleString("fi-FI")}
+                {data?.total_return_journeys}
               </p>
               <p className="text-md text-slate-500"></p>
             </div>
@@ -156,7 +180,7 @@ const SingleStation = () => {
             </Link>
           </div>
           <div>
-            <h3 className="text-lg font-bold mb-3">Top 5 Destinations [TO]</h3>
+            <h3 className="text-lg font-bold mb-3">Top 5 Destinations</h3>
             <ul>
               {returnStationData &&
                 returnStationData.map((data, index) => {
@@ -164,24 +188,24 @@ const SingleStation = () => {
                     <TopRankList
                       index={index + 1}
                       count={data.count}
-                      station_id={data.station_id}
-                      station_name={data.station_name}
+                      station_id={data.return_station_id}
+                      station_name={data.return_station_name}
                     />
                   );
                 })}
             </ul>
           </div>
           <div>
-            <h3 className="text-lg font-bold mb-3">Top 5 Departures [FROM]</h3>
+            <h3 className="text-lg font-bold mb-3">Top 5 Departures</h3>
             <ul>
-              {departureStationData &&
-                departureStationData.map((data, index) => {
+              {returnStationData &&
+                returnStationData.map((data, index) => {
                   return (
                     <TopRankList
                       index={index + 1}
                       count={data.count}
-                      station_id={data.station_id}
-                      station_name={data.station_name}
+                      station_id={data.return_station_id}
+                      station_name={data.return_station_name}
                     />
                   );
                 })}

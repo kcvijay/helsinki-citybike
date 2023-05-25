@@ -6,7 +6,8 @@ const router = express.Router();
 const {
   getAllData,
   getData,
-  getTopStations,
+  getTopReturnStations,
+  getTopDepartureStations,
 } = require("../controllers/journeyController");
 
 // routes for stations collection
