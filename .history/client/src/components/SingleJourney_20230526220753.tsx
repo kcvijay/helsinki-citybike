@@ -127,7 +127,7 @@ const SingleJourney = () => {
             />
           ) : (
             <div className="w-full flex justify-center items-center min-h-[400px] border-4 bg-white border-slate-500 rounded-md">
-              <img className="rounded-full" src={loader} alt="Loading icon" />
+              Map loading...
             </div>
           )}
         </div>

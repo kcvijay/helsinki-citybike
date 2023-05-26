@@ -37,7 +37,7 @@ const SingleJourney = () => {
     if (journeyData) {
       fetchDepartureStationData();
     }
-  }, [journeyData]);
+  }, []);
 
   useEffect(() => {
     const fetchReturnStationData = async () => {
@@ -46,9 +46,7 @@ const SingleJourney = () => {
       );
       setReturnStationData(response.data);
     };
-    if (departureStationData) {
-      fetchReturnStationData();
-    }
+    fetchReturnStationData();
   }, [departureStationData]);
 
   // Formatting to readable Finnish type date format!
@@ -117,7 +115,7 @@ const SingleJourney = () => {
           </p>
         </div>
         <div className="mt-8">
-          {departureStationData && returnStationData ? (
+          {returnStationData && departureStationData && (
             <iframe
               className="w-full min-h-[400px] border-4 border-slate-500 rounded-md"
               title="map"
@@ -125,10 +123,6 @@ const SingleJourney = () => {
               loading={"lazy"}
               referrerPolicy={"no-referrer-when-downgrade"}
             />
-          ) : (
-            <div className="w-full flex justify-center items-center min-h-[400px] border-4 bg-white border-slate-500 rounded-md">
-              <img className="rounded-full" src={loader} alt="Loading icon" />
-            </div>
           )}
         </div>
         <button

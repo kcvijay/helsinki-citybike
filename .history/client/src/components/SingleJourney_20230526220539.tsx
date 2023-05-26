@@ -72,6 +72,8 @@ const SingleJourney = () => {
     );
   }
 
+  console.log(departureStationData);
+
   return (
     <>
       <div className="wrapper">
@@ -126,9 +128,7 @@ const SingleJourney = () => {
               referrerPolicy={"no-referrer-when-downgrade"}
             />
           ) : (
-            <div className="w-full flex justify-center items-center min-h-[400px] border-4 bg-white border-slate-500 rounded-md">
-              <img className="rounded-full" src={loader} alt="Loading icon" />
-            </div>
+            <div className="w-full min-h-[400px] border-4 bg-white border-slate-500 rounded-md"></div>
           )}
         </div>
         <button

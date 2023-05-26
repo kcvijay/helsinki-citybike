@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import { RootState, AppDispatch } from "../app/store";
 import { useAppDispatch } from "../app/hooks";
 import { useSelector } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
 
 import { showSingleJourney } from "../features/journeys/journeysAction";
+import { showSingleStation } from "../features/stations/stationsAction";
 import loader from "../assets/loading.gif";
 
 const SingleJourney = () => {
@@ -16,6 +16,7 @@ const SingleJourney = () => {
   const { journeyData, loading } = useSelector(
     (state: RootState) => state.journeys
   );
+
   const { stationData } = useSelector((state: RootState) => state.stations);
   const [departureStationData, setDepartureStationData] =
     useState<typeof stationData>();
@@ -25,31 +26,33 @@ const SingleJourney = () => {
   useEffect(() => {
     dispatch(showSingleJourney(params.id ?? ""));
     window.scrollTo(0, 0);
-  }, [params.id]);
+  }, [dispatch, params.id]);
 
   useEffect(() => {
-    const fetchDepartureStationData = async () => {
-      const response = await axios.get(
-        `http://localhost:4000/api/stations/${journeyData?.departure_station_id}`
-      );
-      setDepartureStationData(response.data);
-    };
-    if (journeyData) {
-      fetchDepartureStationData();
+    if (journeyData?.departure_station_id) {
+      dispatch(showSingleStation(journeyData?.departure_station_id));
     }
   }, [journeyData]);
 
-  useEffect(() => {
-    const fetchReturnStationData = async () => {
-      const response = await axios.get(
-        `http://localhost:4000/api/stations/${journeyData?.return_station_id}`
-      );
-      setReturnStationData(response.data);
-    };
-    if (departureStationData) {
-      fetchReturnStationData();
-    }
-  }, [departureStationData]);
+  console.log(journeyData);
+
+  // useEffect(() => {
+  //   if (stationData) {
+  //     return setDepartureStationData(stationData);
+  //   }
+  // }, []);
+
+  // useEffect(() => {
+  //   if (departureStationData) {
+  //     dispatch(showSingleStation(journeyData?.return_station_id));
+  //   }
+  // }, [departureStationData]);
+
+  // useEffect(() => {
+  //   if (stationData) {
+  //     return setReturnStationData(stationData);
+  //   }
+  // }, []);
 
   // Formatting to readable Finnish type date format!
   const convertToLocaleString = (oldDateFormat: any) => {
@@ -71,6 +74,8 @@ const SingleJourney = () => {
       </div>
     );
   }
+
+  console.log(departureStationData);
 
   return (
     <>
@@ -116,20 +121,14 @@ const SingleJourney = () => {
             </p>
           </p>
         </div>
-        <div className="mt-8">
-          {departureStationData && returnStationData ? (
-            <iframe
-              className="w-full min-h-[400px] border-4 border-slate-500 rounded-md"
-              title="map"
-              src={`https://www.google.com/maps/embed?pb=!1m26!1m12!1m3!1d7930.444132094687!2d24.862119030184367!3d60.20371979912591!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m11!3e1!4m4!2s${departureStationData?.y}%2C${departureStationData?.x}!3m2!1d${departureStationData?.y}!2d${departureStationData?.x}!4m4!2s${returnStationData?.y}%2C%20${returnStationData?.x}!3m2!1d${returnStationData?.y}!2d${returnStationData?.x}!5e0!3m2!1sfi!2sfi!4v1683216115271!5m2!1sfi!2sfi`}
-              loading={"lazy"}
-              referrerPolicy={"no-referrer-when-downgrade"}
-            />
-          ) : (
-            <div className="w-full flex justify-center items-center min-h-[400px] border-4 bg-white border-slate-500 rounded-md">
-              <img className="rounded-full" src={loader} alt="Loading icon" />
-            </div>
-          )}
+        <div className="mt-12">
+          {/* <iframe
+            className="w-full min-h-[400px]"
+            title="map"
+            src={`https://www.google.com/maps/embed?pb=!1m26!1m12!1m3!1d7930.444132094687!2d24.862119030184367!3d60.20371979912591!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m11!3e1!4m4!2s${departureStationData?.y}%2C${departureStationData?.x}!3m2!1d${departureStationData?.y}!2d${departureStationData?.x}!4m4!2s${returnStationData?.y}%2C%20${returnStationData?.x}!3m2!1d${returnStationData?.y}!2d${returnStationData?.x}!5e0!3m2!1sfi!2sfi!4v1683216115271!5m2!1sfi!2sfi`}
+            loading={"lazy"}
+            referrerPolicy={"no-referrer-when-downgrade"}
+          ></iframe> */}
         </div>
         <button
           className="inline-block btn-primary mt-6"
