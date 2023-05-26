@@ -1,0 +1,60 @@
+import { createSlice } from "@reduxjs/toolkit";
+import { showAllStations, showSingleStation } from "./stationsAction";
+
+interface StationData {
+  Adress: string;
+  _id: string;
+  Nimi: string;
+  Namn: string;
+  Stad: string;
+  address: string;
+  capacity: number;
+  city: string;
+  name: string;
+  operator: string;
+  station_id: string;
+  x: string;
+  y: string;
+  total_departure_journeys: number;
+  total_return_journeys: number;
+}
+
+interface StationState {
+  loading: boolean;
+  success: boolean;
+  allStationData: StationData[];
+  stationData: StationData | null;
+}
+
+export const stationsSlice = createSlice({
+  name: "stations",
+  initialState: {
+    loading: false,
+    success: false,
+    allStationsData: [],
+    stationData: [],
+  },
+  reducers: {},
+
+  extraReducers: (builder) => {
+    builder
+      .addCase(showAllStations.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(showAllStations.fulfilled, (state, action) => {
+        state.loading = false;
+        state.allStationsData = action.payload;
+        state.success = true;
+      })
+      .addCase(showSingleStation.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(showSingleStation.fulfilled, (state, action) => {
+        state.loading = false;
+        state.stationData = action.payload;
+        state.success = true;
+      });
+  },
+});
+
+export default stationsSlice.reducer;
