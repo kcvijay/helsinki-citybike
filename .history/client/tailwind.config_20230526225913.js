@@ -5,7 +5,7 @@ module.exports = {
     extend: {
       backgroundImage: {
         hero: "linear-gradient(to bottom right, rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('/src/assets/helsinki.webp')",
-        cycle: "linear-gradient(to bottom right, rgba(255,255,255,0.2), rgba(255,255,255,0.2)), url('/src/assets/citybike.webp')"
+        cycle: "linear-gradient(to bottom right, rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url('/src/assets/citybike.webp')"
       },
       screens: {
         md: "900px",

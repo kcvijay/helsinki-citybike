@@ -20,7 +20,10 @@ const StationRow = ({
 }: stationRowProps) => {
   return (
     <tr>
-      <td data-cell="Name" className="text-teal-900 hover:underline">
+      <td
+        data-cell="Name"
+        className="underline hover:no-underline transition-all duration-500"
+      >
         <Link to={`/all-stations/${station_id}`}>
           {name} ({station_id})
         </Link>

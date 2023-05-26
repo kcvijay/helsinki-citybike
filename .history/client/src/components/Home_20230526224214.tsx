@@ -8,10 +8,15 @@ const Home = () => {
         <h2 className="text-[32px] font-bold mb-8">
           CityBike Finland Journey and Stations
         </h2>
+        <p className="mb-4">
+          <span className="bg-teal-500 px-6 py-2 mr-4 text-white rounded-full">
+            Helsinki
+          </span>
+          <span>Espoo</span>
+        </p>
         <p className="text-xl leading-10 mb-8">
-          This application provides the journey and bicycle station data of city
-          bike provider CityBike Helsinki, dated from May 2021 to July 2021
-          exclusively between Helsinki and Espoo area.
+          This application provides the journey and bicycle station data for
+          Helsinki city bikes starting from May 2021 to July 2021.
         </p>
         <Link className="btn-primary" to="/all-journeys">
           Browse all journeys

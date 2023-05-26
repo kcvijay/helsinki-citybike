@@ -26,9 +26,7 @@ const Header = () => {
           </li>
           <li>
             <NavLink
-              className={`inline-block w-[160px] md:w-[130]  p-8 hover:bg-orange-300 text-center  transition-all duration-300  ${(
-                isActive: any
-              ) => (isActive ? "active" : "")}`}
+              className="inline-block w-[160px] md:w-[130]  p-8 hover:bg-orange-300 text-center  transition-all duration-300"
               to="/all-journeys"
             >
               All Journeys
@@ -36,9 +34,7 @@ const Header = () => {
           </li>
           <li>
             <NavLink
-              className={`inline-block w-[160px] md:w-[130]  p-8 hover:bg-orange-300 text-center  transition-all duration-300 ${(
-                isActive: any
-              ) => (isActive ? "active" : "")}`}
+              className="inline-block w-[160px] md:w-[130]  p-8 hover:bg-orange-300 text-center  transition-all duration-300"
               to="/all-stations"
             >
               All Stations
@@ -46,7 +42,7 @@ const Header = () => {
           </li>
           <li>
             <NavLink
-              className={`inline-block w-[160px] md:w-[130]  p-8 hover:bg-orange-300 text-center  transition-all duration-300              ) => (isActive ? "active" : "")}`}
+              className="inline-block w-[160px] md:w-[130]  p-8 hover:bg-orange-300 text-center  transition-all duration-300"
               to="/about"
             >
               About
@@ -61,10 +57,10 @@ const Header = () => {
         </div>
       </header>
       {showNav && (
-        <ul className="md:hidden absolute bg-[rgba(0,0,0,0.9)] top-[84px] left-0 min-h-[100vh] min-w-[100vw] z-[999] text-white text-center transition-all duration-300">
+        <ul className="md:hidden absolute bg-[rgba(0,0,0,0.9)] top-[84px] left-0 min-h-[100vh] min-w-[100vw] z-[999] text-center text-white transition-all duration-300">
           <li>
             <NavLink
-              className="inline-block w-full p-9 hover:bg-orange-300 transition-all duration-300"
+              className="inline-block w-full p-9 hover:bg-orange-300 hover:text-black transition-all duration-300"
               to="/"
               onClick={() => setShowNav(!showNav)}
             >
@@ -73,7 +69,7 @@ const Header = () => {
           </li>
           <li>
             <NavLink
-              className="inline-block w-full p-9 hover:bg-orange-300 transition-all duration-300"
+              className="inline-block w-full p-9 hover:bg-orange-300 hover:text-black transition-all duration-300"
               to="/all-journeys"
               onClick={() => setShowNav(!showNav)}
             >
@@ -82,7 +78,7 @@ const Header = () => {
           </li>
           <li>
             <NavLink
-              className="inline-block w-full p-9 hover:bg-orange-300 transition-all duration-300"
+              className="inline-block w-full p-9 hover:bg-orange-300 hover:text-black transition-all duration-300"
               to="/all-stations"
               onClick={() => setShowNav(!showNav)}
             >
@@ -91,7 +87,7 @@ const Header = () => {
           </li>
           <li>
             <NavLink
-              className="inline-block w-full p-9 hover:bg-orange-300 transition-all duration-300"
+              className="inline-block w-full p-9 hover:bg-orange-300 hover:text-black transition-all duration-300"
               to="/about"
               onClick={() => setShowNav(!showNav)}
             >

@@ -37,7 +37,8 @@ const About = () => {
     // </div>
     <div className="wrapper md:grid grid-4fr-2fr min-h-[50vh]">
       <div className="bg-slate-100 p-[32px]">
-        <h2 className="text-[32px] font-bold mb-8">About This Project</h2>
+        <h2 className="text-3xl font-bold mb-8">About This Project</h2>
+
         <p className="leading-10 mb-4">
           The purpose of this application is to show and visualize both consumer
           riding journeys and, the information about CityBike Helsinki bicycle

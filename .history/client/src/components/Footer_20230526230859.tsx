@@ -7,8 +7,7 @@ const Footer = () => {
     <footer className="bg-slate-700 text-center py-8 text-white">
       <h2 className="text-xl font-bold">Helsinki City Bike Application</h2>
       <p>Source Code &copy;&nbsp;:&nbsp;Vijay KC {year}</p>
-      <p className="text-sm">Images from Unsplash</p>
-      <p className="text-sm">Data licensed by Helsinki CityBike</p>
+      <p>Images: Unsplash</p>
     </footer>
   );
 };
