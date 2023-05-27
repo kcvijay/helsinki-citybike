@@ -12,7 +12,7 @@ export const showAllStations = createAsyncThunk(
   "stations/showAll",
   async ({ limit, skip }: AllStationParams) => {
     const response = await axios.get(
-      `http://localhost:4000/api/stations?limit=${limit}&offset=${skip}`,
+      `https://hkl-citybike.onrender.com/api/stations?limit=${limit}&offset=${skip}`,
       {}
     );
     return response.data;
