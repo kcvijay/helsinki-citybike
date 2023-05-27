@@ -1,13 +1,13 @@
 {
   "name": "api",
   "version": "1.0.0",
+  "type": "module",
   "description": "backend of citybike app",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node backend/server.ts",
-    "dev": "nodemon backend/server.ts",
-    "build": "tsc"
+    "start": "ts-node backend/server.ts",
+    "dev": "nodemon backend/server.ts"
   },
   "author": "vijaykc",
   "license": "ISC",
