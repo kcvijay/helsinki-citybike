@@ -1,0 +1,89 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .page-header {
+    @apply text-3xl text-white font-bold mb-6;
+  }
+
+  .btn-primary {
+    @apply inline-block bg-orange-400 text-white mt-8 px-10 py-4 rounded-md border-2 border-orange-400 hover:border-white transition-all duration-300;
+  }
+
+  .btn-secondary {
+    @apply inline-block bg-teal-700 text-white px-10 py-4 rounded-md border-2 border-teal-700 hover:border-white transition-all duration-300;
+  }
+  .active {
+    @apply bg-yellow-100 text-black;
+  }
+
+  .navlink-lg {
+    @apply inline-block w-[160px] md:w-[130]  p-8 hover:bg-orange-300 text-center transition-all duration-300;
+  }
+
+  .navlink-md {
+    @apply inline-block w-full p-9 hover:bg-orange-300 transition-all duration-300;
+  }
+
+  a {
+    @apply hover:no-underline;
+  }
+
+  * {
+    scroll-behavior: smooth;
+  }
+
+  .wrapper {
+    width: min(1400px, 95%);
+    margin-inline: auto;
+    padding: 48px 0;
+  }
+
+  /*Form*/
+
+  form .input-box {
+    margin-bottom: 2rem;
+  }
+
+  label {
+    color: #fff;
+  }
+
+  input,
+  textarea {
+    display: block;
+    font-family: inherit;
+    max-width: 100%;
+    margin-top: 1rem;
+    transition: all 0.5s ease;
+  }
+
+  input:disabled {
+    pointer-events: none;
+    background-color: #ddd;
+  }
+
+  select {
+    display: block;
+    margin-top: 1rem;
+  }
+
+  input,
+  textarea,
+  select {
+    padding: 1rem;
+    border-radius: 7px;
+    width: min(100%, 95%);
+  }
+
+  input:focus,
+  textarea:focus,
+  select:focus {
+    outline: 3px solid teal;
+  }
+
+  .grid-4fr-2fr {
+    grid-template-columns: 4fr 2fr;
+  }
+}
