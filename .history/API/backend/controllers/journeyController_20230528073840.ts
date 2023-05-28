@@ -31,7 +31,6 @@ const getData = asyncHandler(
     let collection: any;
     let filter: any;
 
-    // Switching between two collections
     switch (collectionName) {
       case "journeys":
         collection = Journey;
@@ -60,6 +59,7 @@ const getData = asyncHandler(
       return;
     }
 
+    // Counts the number of journeys started from:
     if (collectionName === "stations") {
       const stationId = req.params.stationid;
 
@@ -83,14 +83,11 @@ const getData = asyncHandler(
       ]);
 
       // Calculating average departure and return duration for that station
-      const averageDepartureDuration = Math.floor(
-        totalDepartureTime[0].total / totalDepartureJourneys
-      );
-      const averageReturnDuration = Math.floor(
-        totalReturnTime[0].total / totalReturnJourneys
-      );
 
-      // Implementing on query
+      const averageDepartureDuration =
+        totalDepartureTime[0].total / totalDepartureJourneys;
+      const averageReturnDuration =
+        totalReturnTime[0].total / totalReturnJourneys;
       const responseData = {
         ...data.toObject(),
         total_departure_journeys: totalDepartureJourneys,
@@ -108,7 +105,6 @@ const getData = asyncHandler(
 const getTopStations = asyncHandler(async (req: Request, res: Response) => {
   const stationId = req.params.stationid;
 
-  // Calculating the list of top 5 departure and return stations.
   try {
     const result = await Journey.aggregate([
       {
