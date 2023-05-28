@@ -123,7 +123,7 @@ const SingleStation = () => {
           </div>
           <div>
             <h3 className="text-lg font-bold mb-3 px-4">
-              Top 5 Destinations To
+              Top 5 Destination To
             </h3>
             <ul className="shadow-md overflow-hidden">
               {topStations &&
@@ -142,7 +142,7 @@ const SingleStation = () => {
           </div>
           <div>
             <h3 className="text-lg font-bold mb-3 px-4">
-              Top 5 Departures From
+              Top 5 Departure From
             </h3>
             <ul className="shadow-md overflow-hidden">
               {topStations &&
