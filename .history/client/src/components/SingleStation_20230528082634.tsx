@@ -56,15 +56,19 @@ const SingleStation = () => {
         </p>
 
         <div className="bg-white p-8 rounded-md grid grid-cols-1 md:grid-cols-2 gap-8 transition-all duration-300">
-          <div className="h-full">
+          <div>
             <StationDetailList
               listHeader={"Address"}
-              listDetail={stationData ? stationData?.address : ""}
+              listDetail={`${stationData ? stationData?.address : ""} / ${
+                stationData ? stationData?.Adress : ""
+              }`}
             />
 
             <StationDetailList
               listHeader={"City"}
-              listDetail={stationData ? stationData?.city : ""}
+              listDetail={`${stationData ? stationData?.city : ""} / ${
+                stationData ? stationData?.Stad : ""
+              }`}
             />
 
             <StationDetailList
@@ -82,7 +86,7 @@ const SingleStation = () => {
                       "fi-FI"
                     ) + " Times"
                   : ""
-              }, Average ${
+              } / Average ${
                 stationData
                   ? convertToMinAndSec(stationData?.average_departure_duration)
                   : ""
@@ -96,7 +100,7 @@ const SingleStation = () => {
                   ? stationData?.total_return_journeys.toLocaleString("fi-FI") +
                     " Times"
                   : ""
-              }, Average ${
+              } / Average ${
                 stationData
                   ? convertToMinAndSec(stationData?.average_return_duration)
                   : ""

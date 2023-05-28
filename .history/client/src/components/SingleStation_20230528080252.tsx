@@ -8,8 +8,6 @@ import {
 } from "../features/stations/stationsAction";
 import { Link, useParams, useNavigate } from "react-router-dom";
 
-import { convertToMinAndSec } from "../modules/ConvertMinAndSec";
-
 // Components
 import loader from "../assets/loading.gif";
 import TopRankList from "./TopRankList";
@@ -55,52 +53,51 @@ const SingleStation = () => {
           {stationData?.Nimi} / {stationData?.Namn}
         </p>
 
-        <div className="bg-white p-8 rounded-md grid grid-cols-1 md:grid-cols-2 gap-8 transition-all duration-300">
-          <div className="h-full">
+        <div className="bg-white p-5 rounded-md grid grid-cols-1 md:grid-cols-2 gap-8 transition-all duration-300">
+          <div>
             <StationDetailList
               listHeader={"Address"}
-              listDetail={stationData ? stationData?.address : ""}
+              listDetail={`${stationData ? stationData?.address : ""} / ${
+                stationData ? stationData?.Adress : ""
+              }`}
             />
 
             <StationDetailList
               listHeader={"City"}
-              listDetail={stationData ? stationData?.city : ""}
+              listDetail={`${stationData ? stationData?.city : ""} / ${
+                stationData ? stationData?.Stad : ""
+              }`}
             />
 
             <StationDetailList
               listHeader={"Capacity"}
-              listDetail={
-                stationData ? stationData?.capacity + " Bicycles" : ""
-              }
+              listDetail={stationData ? stationData?.capacity : ""}
             />
 
-            <StationDetailList
-              listHeader={"Departure"}
-              listDetail={`${
-                stationData
-                  ? stationData?.total_departure_journeys.toLocaleString(
-                      "fi-FI"
-                    ) + " Times"
-                  : ""
-              }, Average ${
-                stationData
-                  ? convertToMinAndSec(stationData?.average_departure_duration)
-                  : ""
-              }`}
-            />
+            <div className="mb-6">
+              <h3 className="text-md">Capacity</h3>
+              <p className="text-md text-slate-500">
+                {stationData?.capacity} bicycles
+              </p>
+            </div>
 
+            <div className="mb-6">
+              <h3 className="text-md">Total Departure Journeys</h3>
+              <p className="text-md text-slate-500">
+                {stationData?.total_departure_journeys.toLocaleString("fi-FI")}
+              </p>
+              <p className="text-md text-slate-500"></p>
+            </div>
+            <div className="mb-6">
+              <h3 className="text-md">Total Return Journeys</h3>
+              <p className="text-md text-slate-500">
+                {stationData?.total_return_journeys.toLocaleString("fi-FI")}
+              </p>
+              <p className="text-md text-slate-500"></p>
+            </div>
             <StationDetailList
-              listHeader={"Return"}
-              listDetail={`${
-                stationData
-                  ? stationData?.total_return_journeys.toLocaleString("fi-FI") +
-                    " Times"
-                  : ""
-              }, Average ${
-                stationData
-                  ? convertToMinAndSec(stationData?.average_return_duration)
-                  : ""
-              }`}
+              listHeader={"Address"}
+              listDetail={stationData ? stationData?.address : ""}
             />
           </div>
           <div className="h-[350px] md:h-full md:auto relative">

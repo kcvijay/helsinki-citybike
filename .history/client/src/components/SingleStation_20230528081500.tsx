@@ -8,8 +8,6 @@ import {
 } from "../features/stations/stationsAction";
 import { Link, useParams, useNavigate } from "react-router-dom";
 
-import { convertToMinAndSec } from "../modules/ConvertMinAndSec";
-
 // Components
 import loader from "../assets/loading.gif";
 import TopRankList from "./TopRankList";
@@ -34,6 +32,13 @@ const SingleStation = () => {
     dispatch(showTopStations(params.stationid ?? ""));
   }, []);
 
+  const convertToMinAndSec = (totalSeconds: number) => {
+    const minutes = Math.floor(totalSeconds / 60);
+    const seconds = totalSeconds % 60;
+    const minAndSec = `${minutes} min, ${seconds} sec`;
+    return minAndSec;
+  };
+
   if (loading) {
     return (
       <div className="flex py-[50px] justify-center items-center">
@@ -55,16 +60,20 @@ const SingleStation = () => {
           {stationData?.Nimi} / {stationData?.Namn}
         </p>
 
-        <div className="bg-white p-8 rounded-md grid grid-cols-1 md:grid-cols-2 gap-8 transition-all duration-300">
-          <div className="h-full">
+        <div className="bg-white p-5 rounded-md grid grid-cols-1 md:grid-cols-2 gap-8 transition-all duration-300">
+          <div>
             <StationDetailList
               listHeader={"Address"}
-              listDetail={stationData ? stationData?.address : ""}
+              listDetail={`${stationData ? stationData?.address : ""} / ${
+                stationData ? stationData?.Adress : ""
+              }`}
             />
 
             <StationDetailList
               listHeader={"City"}
-              listDetail={stationData ? stationData?.city : ""}
+              listDetail={`${stationData ? stationData?.city : ""} / ${
+                stationData ? stationData?.Stad : ""
+              }`}
             />
 
             <StationDetailList
@@ -82,25 +91,31 @@ const SingleStation = () => {
                       "fi-FI"
                     ) + " Times"
                   : ""
-              }, Average ${
+              } (Average: ${
                 stationData
                   ? convertToMinAndSec(stationData?.average_departure_duration)
                   : ""
-              }`}
+              })`}
             />
 
             <StationDetailList
               listHeader={"Return"}
-              listDetail={`${
+              listDetail={
                 stationData
                   ? stationData?.total_return_journeys.toLocaleString("fi-FI") +
                     " Times"
                   : ""
-              }, Average ${
+              }
+            />
+
+            <StationDetailList
+              listHeader={"Return"}
+              listDetail={
                 stationData
-                  ? convertToMinAndSec(stationData?.average_return_duration)
+                  ? stationData?.total_return_journeys.toLocaleString("fi-FI") +
+                    " Times"
                   : ""
-              }`}
+              }
             />
           </div>
           <div className="h-[350px] md:h-full md:auto relative">
