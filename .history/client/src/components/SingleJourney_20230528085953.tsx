@@ -93,7 +93,7 @@ const SingleJourney = () => {
           </div>
         </div>
         <div className="flex justify-start items-center gap-4">
-          <p className="flex justify-center items-center bg-white px-4 py-2">
+          <p className="flex justify-center items-center bg-white px-4 py-2 rounded-md">
             <p className="material-icons text-slate-500 mr-4">
               directions_bike
             </p>
@@ -103,7 +103,7 @@ const SingleJourney = () => {
               km
             </p>
           </p>
-          <p className="flex justify-center items-center bg-white px-4 py-2">
+          <p className="flex justify-center items-center bg-white px-4 py-2 rounded-md">
             <p className="material-icons text-slate-500 mr-4">schedule</p>
             <p>
               {journeyData?.duration &&

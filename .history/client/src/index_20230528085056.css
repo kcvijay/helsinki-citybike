@@ -8,11 +8,11 @@
   }
 
   .btn-primary {
-    @apply inline-block bg-orange-400 text-white mt-8 px-10 py-4 border-2 border-orange-400 hover:border-white cursor-pointer transition-all duration-300;
+    @apply inline-block bg-orange-400 text-white mt-8 px-10 py-4 border-2 border-orange-400 hover:border-white transition-all duration-300;
   }
 
   .btn-secondary {
-    @apply inline-block bg-teal-700 text-white px-10 py-4 border-2 border-teal-700 hover:border-white cursor-pointer transition-all duration-300;
+    @apply inline-block bg-teal-700 text-white px-10 py-4 border-2 border-teal-700 hover:border-white transition-all duration-300;
   }
   .active {
     @apply bg-yellow-100 text-black;
@@ -27,7 +27,7 @@
   }
 
   a {
-    @apply cursor-pointer hover:no-underline;
+    @apply hover:no-underline;
   }
 
   .ranklist {
@@ -60,6 +60,7 @@
     font-family: inherit;
     max-width: 100%;
     margin-top: 1rem;
+    transition: all 0.5s ease;
   }
 
   input:disabled {
@@ -82,7 +83,7 @@
   input:focus,
   textarea:focus,
   select:focus {
-    outline: 3px solid rgba(255, 166, 0, 0.426);
+    outline: 3px solid teal;
   }
 
   .grid-4fr-2fr {

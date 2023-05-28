@@ -114,7 +114,7 @@ const SingleStation = () => {
               src={`https://www.openstreetmap.org/export/embed.html?bbox=${stationData?.x}%2C${stationData?.y}%2C${stationData?.x}%2C${stationData?.y}&amp;layer=mapnik&amp;marker=${stationData?.y}%2C${stationData?.x}`}
             ></iframe>
             <Link
-              className="block absolute bottom-4 left-4 bg-white py-2 px-4 border-2 border-slate-300"
+              className="block absolute bottom-4 left-4 bg-white py-2 px-4 border-2 border-slate-300 rounded-md "
               to={`https://www.openstreetmap.org/?mlat=${stationData?.y}&amp;mlon=${stationData?.x}#map=18/${stationData?.y}/${stationData?.x}`}
               target="_blank noreferer"
             >

@@ -82,7 +82,7 @@
   input:focus,
   textarea:focus,
   select:focus {
-    outline: 3px solid rgba(255, 166, 0, 0.426);
+    outline: 2px dotted #333;
   }
 
   .grid-4fr-2fr {

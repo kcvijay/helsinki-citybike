@@ -47,7 +47,7 @@ const SingleStation = () => {
       <div className="wrapper">
         <h2 className="page-header uppercase">
           {stationData?.name}
-          <span className="inline-block bg-orange-500 ml-4 px-2 py-1">
+          <span className="inline-block bg-orange-500 ml-4 px-2 py-1 rounded-md">
             {stationData?.station_id}
           </span>
         </h2>
@@ -55,7 +55,7 @@ const SingleStation = () => {
           {stationData?.Nimi} / {stationData?.Namn}
         </p>
 
-        <div className="bg-white p-8 grid grid-cols-1 md:grid-cols-2 gap-8 transition-all duration-300">
+        <div className="bg-white p-8 rounded-md grid grid-cols-1 md:grid-cols-2 gap-8 transition-all duration-300">
           <div className="h-full flex flex-col gap-2">
             <StationDetailList
               listHeader={"Address"}
@@ -109,12 +109,12 @@ const SingleStation = () => {
           </div>
           <div className="h-[350px] md:h-full md:auto relative">
             <iframe
-              className="w-full h-full border-4 border-slate-200"
+              className="w-full h-full rounded-md border-4 border-slate-200"
               title={stationData?.name}
               src={`https://www.openstreetmap.org/export/embed.html?bbox=${stationData?.x}%2C${stationData?.y}%2C${stationData?.x}%2C${stationData?.y}&amp;layer=mapnik&amp;marker=${stationData?.y}%2C${stationData?.x}`}
             ></iframe>
             <Link
-              className="block absolute bottom-4 left-4 bg-white py-2 px-4 border-2 border-slate-300"
+              className="block absolute bottom-4 left-4 bg-white py-2 px-4 border-2 border-slate-300 rounded-md "
               to={`https://www.openstreetmap.org/?mlat=${stationData?.y}&amp;mlon=${stationData?.x}#map=18/${stationData?.y}/${stationData?.x}`}
               target="_blank noreferer"
             >
@@ -125,7 +125,7 @@ const SingleStation = () => {
             <h3 className="text-lg font-bold mb-3 px-4">
               Top 5 Destination Stations
             </h3>
-            <ul className="shadow-md overflow-hidden">
+            <ul className="rounded-lg shadow-md overflow-hidden">
               {topStations &&
                 topStations?.topReturnStations.map((data, index) => {
                   return (
@@ -144,7 +144,7 @@ const SingleStation = () => {
             <h3 className="text-lg font-bold mb-3 px-4">
               Top 5 Departure Stations{" "}
             </h3>
-            <ul className="shadow-md overflow-hidden">
+            <ul className="rounded-lg shadow-md overflow-hidden">
               {topStations &&
                 topStations?.topDepartureStations.map((data, index) => {
                   return (
